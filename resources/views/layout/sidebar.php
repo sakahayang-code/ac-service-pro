@@ -1,27 +1,28 @@
 <?php
-$user = auth_user() ?? ['name' => 'Tamu', 'role_name' => 'guest', 'role_display_name' => 'Tamu'];
-$currentRole = $user['role_name'] ?? 'guest';
+$user = auth_user() ?? ['name' => 'Admin', 'role_name' => 'admin', 'role_display_name' => 'Administrator'];
+$currentRole = $user['role_name'] ?? 'admin';
 $currentPath = \App\Services\Router::getCurrentRoutePath();
 
 if (!function_exists('is_active_route')) {
     function is_active_route(string $pattern, string $currentPath): bool {
-        if ($pattern === '/' && $currentPath === '/') return true;
-        if ($pattern !== '/' && str_starts_with($currentPath, $pattern)) return true;
+        if ($pattern === '/' && ($currentPath === '/' || $currentPath === '/dashboard')) return true;
+        if ($pattern === '/dashboard' && ($currentPath === '/dashboard' || $currentPath === '/')) return true;
+        if ($pattern !== '/' && $pattern !== '/dashboard' && str_starts_with($currentPath, $pattern)) return true;
         return false;
     }
 }
 ?>
 <aside class="desktop-sidebar">
+    <!-- Brand Header matching reference mockup -->
     <div class="sidebar-brand">
-        <div class="sidebar-brand-logo">
-            <i data-lucide="snowflake" style="width:22px; height:22px;"></i>
+        <div class="sidebar-brand-icon">
+            <i data-lucide="snowflake" style="width:36px; height:36px; stroke-width:2.5;"></i>
         </div>
-        <div class="sidebar-brand-text">
-            <h2>AC SERVICE PRO</h2>
-            <span>Enterprise System</span>
-        </div>
+        <div class="sidebar-brand-title">CoolService</div>
+        <div class="sidebar-brand-subtitle">Service AC Profesional</div>
     </div>
 
+    <!-- Navigation Menu -->
     <nav class="sidebar-nav">
         <!-- 1. DASHBOARD -->
         <a href="/dashboard" class="nav-link <?= is_active_route('/dashboard', $currentPath) ? 'active' : '' ?>">
@@ -30,23 +31,21 @@ if (!function_exists('is_active_route')) {
         </a>
 
         <?php if ($currentRole === 'customer'): ?>
-            <!-- MENU PORTAL PELANGGAN -->
-            <div class="nav-section-title">Layanan Mandiri</div>
+            <a href="/customer-portal/orders" class="nav-link <?= is_active_route('/customer-portal/orders', $currentPath) ? 'active' : '' ?>">
+                <i data-lucide="calendar"></i>
+                <span>Pesanan Saya</span>
+            </a>
             <a href="/customer-portal/book" class="nav-link <?= is_active_route('/customer-portal/book', $currentPath) ? 'active' : '' ?>">
                 <i data-lucide="calendar-plus"></i>
-                <span>Pesan Servis Baru</span>
+                <span>Pesan Servis</span>
             </a>
             <a href="/customer-portal/units" class="nav-link <?= is_active_route('/customer-portal/units', $currentPath) ? 'active' : '' ?>">
                 <i data-lucide="airplay"></i>
                 <span>Unit AC Saya</span>
             </a>
-            <a href="/customer-portal/orders" class="nav-link <?= is_active_route('/customer-portal/orders', $currentPath) ? 'active' : '' ?>">
-                <i data-lucide="clipboard-list"></i>
-                <span>Status Pesanan</span>
-            </a>
             <a href="/customer-portal/invoices" class="nav-link <?= is_active_route('/customer-portal/invoices', $currentPath) ? 'active' : '' ?>">
                 <i data-lucide="receipt"></i>
-                <span>Faktur & Pembayaran</span>
+                <span>Pembayaran</span>
             </a>
             <a href="/customer-portal/complaints" class="nav-link <?= is_active_route('/customer-portal/complaints', $currentPath) ? 'active' : '' ?>">
                 <i data-lucide="message-square-warning"></i>
@@ -54,11 +53,9 @@ if (!function_exists('is_active_route')) {
             </a>
 
         <?php elseif ($currentRole === 'technician'): ?>
-            <!-- MENU KHUSUS TEKNISI -->
-            <div class="nav-section-title">Pengerjaan Lapangan</div>
             <a href="/technician/tasks" class="nav-link <?= is_active_route('/technician/tasks', $currentPath) ? 'active' : '' ?>">
-                <i data-lucide="wrench"></i>
-                <span>Tugas Saya</span>
+                <i data-lucide="calendar"></i>
+                <span>Pesanan / Tugas</span>
             </a>
             <a href="/technician/history" class="nav-link <?= is_active_route('/technician/history', $currentPath) ? 'active' : '' ?>">
                 <i data-lucide="history"></i>
@@ -70,101 +67,74 @@ if (!function_exists('is_active_route')) {
             </a>
 
         <?php else: ?>
-            <!-- OPERASIONAL UMUM (OWNER, ADMIN, CS, KASIR, GUDANG) -->
+            <!-- OWNER, ADMIN, CS, CASHIER, INVENTORY -->
+            <a href="/work-orders" class="nav-link <?= is_active_route('/work-orders', $currentPath) ? 'active' : '' ?>">
+                <i data-lucide="calendar"></i>
+                <span>Pesanan</span>
+            </a>
+
             <?php if (in_array($currentRole, ['owner', 'admin', 'customer_service'])): ?>
-                <div class="nav-section-title">Operasional Servis</div>
-                <a href="/work-orders" class="nav-link <?= is_active_route('/work-orders', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="clipboard-check"></i>
-                    <span>Work Order (WO)</span>
+                <a href="/technicians" class="nav-link <?= is_active_route('/technicians', $currentPath) ? 'active' : '' ?>">
+                    <i data-lucide="user-check"></i>
+                    <span>Teknisi</span>
                 </a>
                 <a href="/customers" class="nav-link <?= is_active_route('/customers', $currentPath) ? 'active' : '' ?>">
                     <i data-lucide="users"></i>
                     <span>Pelanggan</span>
                 </a>
-                <a href="/ac-units" class="nav-link <?= is_active_route('/ac-units', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="snowflake"></i>
-                    <span>Data Unit AC</span>
-                </a>
-                <a href="/technicians" class="nav-link <?= is_active_route('/technicians', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="user-cog"></i>
-                    <span>Teknisi & Jadwal</span>
-                </a>
                 <a href="/service-catalog" class="nav-link <?= is_active_route('/service-catalog', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="tag"></i>
-                    <span>Katalog & Harga</span>
-                </a>
-                <a href="/contracts" class="nav-link <?= is_active_route('/contracts', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="file-signature"></i>
-                    <span>Kontrak Maintenance</span>
-                </a>
-            <?php endif; ?>
-
-            <?php if (in_array($currentRole, ['owner', 'admin', 'inventory'])): ?>
-                <div class="nav-section-title">Inventori & Logistik</div>
-                <a href="/inventory" class="nav-link <?= is_active_route('/inventory', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="boxes"></i>
-                    <span>Stok Sparepart</span>
-                </a>
-                <a href="/purchases" class="nav-link <?= is_active_route('/purchases', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="shopping-cart"></i>
-                    <span>Pembelian (PO)</span>
-                </a>
-                <a href="/suppliers" class="nav-link <?= is_active_route('/suppliers', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="truck"></i>
-                    <span>Pemasok / Supplier</span>
+                    <i data-lucide="wrench"></i>
+                    <span>Layanan</span>
                 </a>
             <?php endif; ?>
 
             <?php if (in_array($currentRole, ['owner', 'admin', 'cashier'])): ?>
-                <div class="nav-section-title">Kasir & Keuangan</div>
                 <a href="/invoices" class="nav-link <?= is_active_route('/invoices', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="receipt"></i>
-                    <span>Faktur / Invoice</span>
-                </a>
-                <a href="/payments" class="nav-link <?= is_active_route('/payments', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="wallet"></i>
+                    <i data-lucide="credit-card"></i>
                     <span>Pembayaran</span>
-                </a>
-                <a href="/expenses" class="nav-link <?= is_active_route('/expenses', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="arrow-up-right"></i>
-                    <span>Pengeluaran Kas</span>
-                </a>
-                <a href="/finance" class="nav-link <?= is_active_route('/finance', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="landmark"></i>
-                    <span>Buku Kas & Rekening</span>
                 </a>
             <?php endif; ?>
 
             <?php if (in_array($currentRole, ['owner', 'admin'])): ?>
-                <div class="nav-section-title">Laporan & Analitik</div>
                 <a href="/reports" class="nav-link <?= is_active_route('/reports', $currentPath) ? 'active' : '' ?>">
                     <i data-lucide="bar-chart-3"></i>
-                    <span>Laporan Usaha</span>
+                    <span>Laporan</span>
                 </a>
             <?php endif; ?>
 
-            <?php if ($currentRole === 'owner'): ?>
-                <div class="nav-section-title">Sistem & Master</div>
+            <?php if (in_array($currentRole, ['owner', 'admin', 'inventory'])): ?>
+                <a href="/inventory" class="nav-link <?= is_active_route('/inventory', $currentPath) ? 'active' : '' ?>">
+                    <i data-lucide="boxes"></i>
+                    <span>Inventori</span>
+                </a>
+            <?php endif; ?>
+
+            <?php if (in_array($currentRole, ['owner', 'admin', 'customer_service'])): ?>
+                <a href="/contracts" class="nav-link <?= is_active_route('/contracts', $currentPath) ? 'active' : '' ?>">
+                    <i data-lucide="file-signature"></i>
+                    <span>Kontrak</span>
+                </a>
+            <?php endif; ?>
+
+            <?php if ($currentRole === 'owner' || $currentRole === 'admin'): ?>
                 <a href="/settings" class="nav-link <?= is_active_route('/settings', $currentPath) ? 'active' : '' ?>">
                     <i data-lucide="settings"></i>
-                    <span>Pengaturan Usaha</span>
-                </a>
-                <a href="/users" class="nav-link <?= is_active_route('/users', $currentPath) ? 'active' : '' ?>">
-                    <i data-lucide="shield-check"></i>
-                    <span>Pengguna & Hak Akses</span>
+                    <span>Pengaturan</span>
                 </a>
             <?php endif; ?>
         <?php endif; ?>
     </nav>
 
-    <div class="sidebar-user">
-        <div class="user-avatar"><?= strtoupper(substr($user['name'] ?? 'U', 0, 1)) ?></div>
-        <div class="user-info">
-            <div class="user-name"><?= htmlspecialchars($user['name'] ?? 'User') ?></div>
-            <span class="user-role-badge"><?= htmlspecialchars($user['role_display_name'] ?? $currentRole) ?></span>
-        </div>
-        <a href="/logout" title="Keluar dari akun" style="color:#ef4444; opacity:0.8; padding:6px; border-radius:8px; display:flex; align-items:center; justify-content:center; transition:all 0.15s ease;" onmouseover="this.style.opacity='1'; this.style.background='rgba(239,68,68,0.15)'" onmouseout="this.style.opacity='0.8'; this.style.background='transparent'">
-            <i data-lucide="log-out" style="width:18px; height:18px;"></i>
+    <!-- Sidebar Bottom Promo Card & Logout Link -->
+    <div class="sidebar-footer-box">
+        <a href="/logout" class="sidebar-logout-link">
+            <i data-lucide="log-out"></i>
+            <span>Keluar</span>
         </a>
+
+        <div class="sidebar-promo-card">
+            <img src="/assets/images/technician_card.jpg" class="sidebar-promo-img" alt="CoolService AC">
+            <div class="sidebar-promo-text">AC Sejuk, Hidup Lebih Nyaman</div>
+        </div>
     </div>
 </aside>

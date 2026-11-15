@@ -93,12 +93,25 @@ if (!function_exists('validate_csrf')) {
     }
 }
 
+if (!function_exists('base_path')) {
+    function base_path(): string
+    {
+        return \App\Services\Router::getBasePath();
+    }
+}
+
 if (!function_exists('url')) {
     function url(string $path = ''): string
     {
-        $base = rtrim(app_config('app.url', ''), '/');
-        $path = ltrim($path, '/');
-        return $path === '' ? $base . '/' : $base . '/' . $path;
+        if (str_starts_with($path, 'http://') || str_starts_with($path, 'https://') || str_starts_with($path, '//')) {
+            return $path;
+        }
+        $base = base_path();
+        $cleanPath = '/' . ltrim($path, '/');
+        if ($cleanPath === '/') {
+            return $base === '' ? '/' : $base;
+        }
+        return $base . $cleanPath;
     }
 }
 
@@ -165,7 +178,36 @@ if (!function_exists('view')) {
         if (!file_exists($file)) {
             throw new RuntimeException("View file not found: {$viewPath} ({$file})");
         }
+
+        $basePath = \App\Services\Router::getBasePath();
+        if ($basePath === '') {
+            require $file;
+            return;
+        }
+
+        ob_start();
         require $file;
+        $html = ob_get_clean();
+
+        $pattern = '/\b(href|action|src)=(["\'])(\/[^"\'\s>]*)\2/i';
+        $rewrittenHtml = preg_replace_callback($pattern, function ($matches) use ($basePath) {
+            $attr = $matches[1];
+            $quote = $matches[2];
+            $url = $matches[3];
+
+            if (str_starts_with($url, '//')) {
+                return $matches[0];
+            }
+
+            if (str_starts_with($url, $basePath . '/') || $url === $basePath) {
+                return $matches[0];
+            }
+
+            $newUrl = $basePath . $url;
+            return "{$attr}={$quote}{$newUrl}{$quote}";
+        }, $html);
+
+        echo $rewrittenHtml;
     }
 }
 

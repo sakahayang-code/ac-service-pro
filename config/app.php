@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost:8000';
-$baseUrl = $protocol . $host;
+$baseUrl = rtrim($protocol . $host, '/');
 
 return [
     'name' => 'AC Service Pro',

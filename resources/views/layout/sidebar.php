@@ -1,7 +1,7 @@
 <?php
 $user = auth_user() ?? ['name' => 'Tamu', 'role_name' => 'guest', 'role_display_name' => 'Tamu'];
 $currentRole = $user['role_name'] ?? 'guest';
-$currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '/';
+$currentPath = \App\Services\Router::getCurrentRoutePath();
 
 if (!function_exists('is_active_route')) {
     function is_active_route(string $pattern, string $currentPath): bool {

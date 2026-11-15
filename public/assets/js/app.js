@@ -3,7 +3,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Register Service Worker
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js')
+        const baseUrl = window.APP_BASE_URL || '';
+        navigator.serviceWorker.register(baseUrl + '/service-worker.js', { scope: (baseUrl || '') + '/' })
             .then((reg) => console.log('ServiceWorker registered with scope:', reg.scope))
             .catch((err) => console.warn('ServiceWorker registration error:', err));
     }

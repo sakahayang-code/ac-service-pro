@@ -1,21 +1,23 @@
 // AC SERVICE PRO - Service Worker v1.0
 const CACHE_NAME = 'ac-service-pro-v1';
-const STATIC_ASSETS = [
-    '/',
-    '/dashboard',
-    '/assets/css/style.css',
-    '/assets/js/app.js',
-    '/assets/js/offline-db.js',
-    '/assets/icons/icon-192.png',
-    '/assets/icons/icon-512.png',
-    '/assets/icons/favicon.png',
-    '/manifest.json'
+const RELATIVE_ASSETS = [
+    '',
+    'dashboard',
+    'assets/css/style.css',
+    'assets/js/app.js',
+    'assets/js/offline-db.js',
+    'assets/icons/icon-192.png',
+    'assets/icons/icon-512.png',
+    'assets/icons/favicon.png',
+    'manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
+    const scope = self.registration.scope;
+    const staticAssets = RELATIVE_ASSETS.map(asset => new URL(asset, scope).href);
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(STATIC_ASSETS).catch((err) => {
+            return cache.addAll(staticAssets).catch((err) => {
                 console.warn('Pre-cache partial warning:', err);
             });
         }).then(() => self.skipWaiting())
@@ -46,12 +48,12 @@ self.addEventListener('fetch', (event) => {
     }
 
     // Don't cache API POST/PUT or dynamic sync routes
-    if (url.pathname.startsWith('/api/sync')) {
+    if (url.pathname.includes('/api/sync')) {
         return;
     }
 
     // Static assets: Cache First, fallback to Network
-    if (url.pathname.startsWith('/assets/')) {
+    if (url.pathname.includes('/assets/')) {
         event.respondWith(
             caches.match(request).then((cachedResponse) => {
                 if (cachedResponse) {

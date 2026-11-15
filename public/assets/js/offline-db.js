@@ -104,9 +104,10 @@ class OfflineDB {
         console.log(`Processing ${items.length} offline sync items...`);
         let syncedCount = 0;
 
+        const baseUrl = window.APP_BASE_URL || '';
         for (const item of items) {
             try {
-                const res = await fetch('/api/sync/push', {
+                const res = await fetch(baseUrl + '/api/sync/push', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

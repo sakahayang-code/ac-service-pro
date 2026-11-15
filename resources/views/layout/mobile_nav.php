@@ -1,7 +1,7 @@
 <?php
 $user = auth_user() ?? ['role_name' => 'guest'];
 $currentRole = $user['role_name'] ?? 'guest';
-$currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '/';
+$currentPath = \App\Services\Router::getCurrentRoutePath();
 ?>
 <nav class="mobile-bottom-nav">
     <?php if ($currentRole === 'technician'): ?>

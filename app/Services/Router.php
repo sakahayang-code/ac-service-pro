@@ -11,6 +11,52 @@ class Router
 {
     private static array $routes = [];
     private static array $namedRoutes = [];
+    private static ?string $basePath = null;
+    private static ?string $currentRoutePath = null;
+
+    public static function getBasePath(): string
+    {
+        if (self::$basePath !== null) {
+            return self::$basePath;
+        }
+
+        $configBase = getenv('APP_BASE_PATH') ?: ($_SERVER['APP_BASE_PATH'] ?? null);
+        if ($configBase !== null) {
+            $normalized = '/' . trim($configBase, '/');
+            self::$basePath = $normalized === '/' ? '' : $normalized;
+            return self::$basePath;
+        }
+
+        $requestUri = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '/';
+        $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME'] ?? '');
+        $scriptDir = str_replace('\\', '/', dirname($scriptName));
+
+        if ($scriptDir === '/' || $scriptDir === '.' || $scriptDir === '') {
+            self::$basePath = '';
+            return self::$basePath;
+        }
+
+        if (str_starts_with($requestUri, $scriptDir)) {
+            self::$basePath = rtrim($scriptDir, '/');
+            return self::$basePath;
+        }
+
+        if (str_ends_with($scriptDir, '/public')) {
+            $parentDir = substr($scriptDir, 0, -7);
+            if ($parentDir !== '' && (str_starts_with($requestUri, $parentDir . '/') || $requestUri === $parentDir)) {
+                self::$basePath = rtrim($parentDir, '/');
+                return self::$basePath;
+            }
+        }
+
+        self::$basePath = '';
+        return self::$basePath;
+    }
+
+    public static function getCurrentRoutePath(): string
+    {
+        return self::$currentRoutePath ?? '/';
+    }
 
     public static function add(string $method, string $path, mixed $handler, array $middlewares = []): void
     {
@@ -51,11 +97,24 @@ class Router
     {
         Auth::startSession();
 
-        $path = parse_url($uri, PHP_URL_PATH) ?: '/';
+        $rawPath = parse_url($uri, PHP_URL_PATH) ?: '/';
+        $basePath = self::getBasePath();
+
+        if ($basePath !== '' && ($rawPath === $basePath || str_starts_with($rawPath, $basePath . '/'))) {
+            $path = substr($rawPath, strlen($basePath));
+            if ($path === '' || $path === false) {
+                $path = '/';
+            }
+        } else {
+            $path = $rawPath;
+        }
+
         $path = '/' . trim($path, '/');
         if ($path !== '/') {
             $path = rtrim($path, '/');
         }
+
+        self::$currentRoutePath = $path;
 
         if ($method === 'HEAD') {
             $method = 'GET';
@@ -164,7 +223,7 @@ class Router
             }
         } catch (Throwable $e) {
             error_log('Router Execution Error: ' . $e->getMessage() . PHP_EOL . $e->getTraceAsString());
-            $isApi = str_starts_with($_SERVER['REQUEST_URI'] ?? '', '/api');
+            $isApi = str_starts_with(self::getCurrentRoutePath(), '/api');
             if ($isApi) {
                 json_response([
                     'success' => false,

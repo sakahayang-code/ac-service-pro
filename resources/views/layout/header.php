@@ -20,6 +20,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>window.APP_BASE_URL = '<?= base_path() ?>';</script>
 </head>
 <body>
 <div class="app-container">

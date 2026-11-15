@@ -71,8 +71,8 @@ view('layout.sidebar');
                                 <?php if ($u['id'] !== (int)auth_user()['id']): ?>
                                     <form action="<?= url('users/' . $u['id'] . '/toggle') ?>" method="POST" onsubmit="return confirm('Ubah status pengguna ini?')">
                                         <?= csrf_field() ?>
-                                        <button type="submit" class="btn btn-sm <?= $u['status'] === 'active' ? 'btn-outline-danger' : 'btn-outline-success' ?>">
-                                            <?= $u['status'] === 'active' ? 'Nonaktifkan' : 'Aktifkan' ?>
+                                        <button type="submit" class="btn-action <?= $u['status'] === 'active' ? 'btn-action-danger' : 'btn-action-view' ?>">
+                                            <span><?= $u['status'] === 'active' ? 'Nonaktifkan' : 'Aktifkan' ?></span>
                                         </button>
                                     </form>
                                 <?php else: ?>

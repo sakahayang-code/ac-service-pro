@@ -119,8 +119,8 @@ view('layout.sidebar');
                                     <?php endif; ?>
                                 </td>
                                 <td class="text-center">
-                                    <a href="<?= url('contracts/' . $c['id']) ?>" class="btn btn-sm btn-outline-primary">
-                                        <i data-lucide="eye" class="icon-sm"></i>
+                                    <a href="<?= url('contracts/' . $c['id']) ?>" class="btn-action btn-action-view">
+                                        <i data-lucide="eye"></i> <span>Detail</span>
                                     </a>
                                 </td>
                             </tr>

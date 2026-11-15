@@ -66,8 +66,8 @@ view('layout.sidebar');
                                     <?= format_rupiah($inv['balance_due']) ?>
                                 </td>
                                 <td class="text-center">
-                                    <a href="<?= url('invoices/' . $inv['id'] . '/print') ?>" target="_blank" class="btn btn-sm btn-outline-primary">
-                                        <i data-lucide="printer" class="icon-xs me-1"></i> Cetak / Bayar
+                                    <a href="<?= url('invoices/' . $inv['id'] . '/print') ?>" target="_blank" class="btn-action btn-action-print">
+                                        <i data-lucide="printer"></i> <span>Cetak Faktur</span>
                                     </a>
                                 </td>
                             </tr>

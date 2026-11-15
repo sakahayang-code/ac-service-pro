@@ -46,18 +46,18 @@ view('layout.sidebar');
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-flex gap-2">
+                            <div class="d-flex gap-2 align-items-center">
                                 <?php if (!empty($n['link_url'])): ?>
-                                    <a href="<?= url($n['link_url']) ?>" class="btn btn-sm btn-outline-primary">
-                                        Buka Tautan
+                                    <a href="<?= url($n['link_url']) ?>" class="btn-action btn-action-view">
+                                        <i data-lucide="external-link"></i> <span>Buka Tautan</span>
                                     </a>
                                 <?php endif; ?>
                                 <?php if (!$n['is_read']): ?>
-                                    <form action="<?= url('notifications/' . $n['id'] . '/read') ?>" method="POST">
+                                    <form action="<?= url('notifications/' . $n['id'] . '/read') ?>" method="POST" style="margin:0;">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="redirect_url" value="notifications">
-                                        <button type="submit" class="btn btn-sm btn-light" title="Tandai Sudah Dibaca">
-                                            <i data-lucide="check" class="icon-xs"></i>
+                                        <button type="submit" class="btn-action btn-action-print" title="Tandai Sudah Dibaca">
+                                            <i data-lucide="check"></i> <span>Tandai Dibaca</span>
                                         </button>
                                     </form>
                                 <?php endif; ?>

@@ -90,15 +90,15 @@
                 </div>
 
                 <!-- Actions Button Row -->
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <a href="https://maps.google.com/?q=<?= urlencode($task['customer_address']) ?>" target="_blank" class="btn btn-outline btn-sm" style="flex:1; min-width:100px;">
-                        <i data-lucide="navigation" style="width:15px; height:15px; color:var(--secondary);"></i> Peta
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;">
+                    <a href="https://maps.google.com/?q=<?= urlencode($task['customer_address']) ?>" target="_blank" class="btn btn-outline btn-sm" style="flex:1; min-width:90px; background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe; font-weight:700;">
+                        <i data-lucide="navigation"></i> <span>Peta</span>
                     </a>
-                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $task['customer_phone']) ?>?text=Halo%20<?= urlencode($task['customer_name']) ?>,%20saya%20teknisi%20AC%20Service%20Pro%20yang%20akan%20menuju%20lokasi%20Anda." target="_blank" class="btn btn-outline btn-sm" style="flex:1; min-width:110px; color:#16a34a; border-color:#bbf7d0;">
-                        <i data-lucide="message-circle" style="width:15px; height:15px;"></i> WhatsApp
+                    <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $task['customer_phone']) ?>?text=Halo%20<?= urlencode($task['customer_name']) ?>,%20saya%20teknisi%20AC%20Service%20Pro%20yang%20akan%20menuju%20lokasi%20Anda." target="_blank" class="btn btn-outline btn-sm" style="flex:1; min-width:105px; background:#f0fdf4; color:#16a34a; border-color:#bbf7d0; font-weight:700;">
+                        <i data-lucide="message-circle"></i> <span>WhatsApp</span>
                     </a>
-                    <a href="/technician/tasks/<?= $task['id'] ?>" class="btn btn-primary btn-sm" style="flex:2; min-width:140px;">
-                        <i data-lucide="play" style="width:15px; height:15px;"></i>
+                    <a href="/technician/tasks/<?= $task['id'] ?>" class="btn btn-primary btn-sm" style="flex:2; min-width:140px; font-weight:700;">
+                        <i data-lucide="play"></i>
                         <span><?= $task['status'] === 'SEDANG_DIKERJAKAN' ? 'Lanjutkan Servis' : 'Buka Pengerjaan' ?></span>
                     </a>
                 </div>

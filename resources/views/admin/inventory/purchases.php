@@ -40,7 +40,9 @@
                             <td><span class="badge badge-green"><?= strtoupper($p['payment_status']) ?></span></td>
                             <td><?= htmlspecialchars($p['created_by_name'] ?? 'Admin') ?></td>
                             <td>
-                                <a href="/purchases/<?= $p['id'] ?>" class="btn btn-outline btn-sm">Lihat Detail</a>
+                                <a href="/purchases/<?= $p['id'] ?>" class="btn-action btn-action-view">
+                                    <i data-lucide="eye"></i> <span>Detail</span>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

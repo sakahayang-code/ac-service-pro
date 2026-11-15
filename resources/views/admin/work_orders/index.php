@@ -124,12 +124,14 @@
                                 <span class="badge badge-<?= $wo['status'] ?>"><?= str_replace('_', ' ', $wo['status']) ?></span>
                             </td>
                             <td>
-                                <div style="display:flex; gap:6px;">
-                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn btn-outline btn-sm" title="Buka Detail">
-                                        <i data-lucide="eye" style="width:14px; height:14px;"></i>
+                                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn-action btn-action-view" title="Buka Detail">
+                                        <i data-lucide="eye"></i>
+                                        <span>Detail</span>
                                     </a>
-                                    <a href="/work-orders/<?= $wo['id'] ?>/spk" target="_blank" class="btn btn-outline btn-sm" title="Cetak SPK">
-                                        <i data-lucide="printer" style="width:14px; height:14px;"></i>
+                                    <a href="/work-orders/<?= $wo['id'] ?>/spk" target="_blank" class="btn-action btn-action-print" title="Cetak SPK">
+                                        <i data-lucide="printer"></i>
+                                        <span>SPK</span>
                                     </a>
                                 </div>
                             </td>

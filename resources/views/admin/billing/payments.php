@@ -58,8 +58,8 @@ view('layout.sidebar');
                                 <td class="text-end fw-bold text-success">+ <?= format_rupiah($pay['amount']) ?></td>
                                 <td><small class="text-muted"><?= htmlspecialchars($pay['received_by_name'] ?? 'Admin') ?></small></td>
                                 <td class="text-center">
-                                    <a href="<?= url('invoices/' . $pay['invoice_id']) ?>" class="btn btn-sm btn-outline-secondary" title="Lihat Faktur">
-                                        <i data-lucide="eye" class="icon-sm"></i>
+                                    <a href="<?= url('invoices/' . $pay['invoice_id']) ?>" class="btn-action btn-action-view" title="Lihat Faktur">
+                                        <i data-lucide="eye"></i> <span>Faktur</span>
                                     </a>
                                 </td>
                             </tr>

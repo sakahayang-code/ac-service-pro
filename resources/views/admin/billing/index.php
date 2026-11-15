@@ -121,12 +121,14 @@
                                 </span>
                             </td>
                             <td>
-                                <div style="display:flex; gap:6px;">
-                                    <a href="/invoices/<?= $inv['id'] ?>" class="btn btn-outline btn-sm" title="Buka Kasir">
-                                        <i data-lucide="eye" style="width:14px; height:14px;"></i>
+                                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                                    <a href="/invoices/<?= $inv['id'] ?>" class="btn-action btn-action-view" title="Buka Kasir">
+                                        <i data-lucide="eye"></i>
+                                        <span>Faktur</span>
                                     </a>
-                                    <a href="/invoices/<?= $inv['id'] ?>/print" target="_blank" class="btn btn-outline btn-sm" title="Cetak / PDF">
-                                        <i data-lucide="printer" style="width:14px; height:14px;"></i>
+                                    <a href="/invoices/<?= $inv['id'] ?>/print" target="_blank" class="btn-action btn-action-print" title="Cetak Faktur">
+                                        <i data-lucide="printer"></i>
+                                        <span>Cetak</span>
                                     </a>
                                 </div>
                             </td>

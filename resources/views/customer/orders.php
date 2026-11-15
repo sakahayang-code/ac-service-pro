@@ -124,8 +124,8 @@ view('layout.sidebar');
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-center">
-                                        <a href="<?= url('customer-portal/orders/' . $wo['id']) ?>" class="btn btn-sm btn-outline-primary">
-                                            <i data-lucide="eye" class="icon-xs me-1"></i> Pantau
+                                        <a href="<?= url('customer-portal/orders/' . $wo['id']) ?>" class="btn-action btn-action-view">
+                                            <i data-lucide="eye"></i> <span>Pantau</span>
                                         </a>
                                     </td>
                                 </tr>

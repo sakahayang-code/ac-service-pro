@@ -66,14 +66,16 @@
                                 </span>
                             </td>
                             <td>
-                                <div style="display:flex; gap:6px;">
-                                    <a href="/service-catalog/<?= $srv['id'] ?>/edit" class="btn btn-outline btn-sm" title="Ubah Tarif">
-                                        <i data-lucide="edit-2" style="width:14px; height:14px;"></i>
+                                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                                    <a href="/service-catalog/<?= $srv['id'] ?>/edit" class="btn-action btn-action-edit" title="Ubah Tarif">
+                                        <i data-lucide="edit"></i>
+                                        <span>Ubah</span>
                                     </a>
                                     <form method="POST" action="/service-catalog/<?= $srv['id'] ?>/toggle" style="display:inline;">
                                         <?= csrf_field() ?>
-                                        <button type="submit" class="btn btn-outline btn-sm" title="<?= $srv['is_active'] ? 'Nonaktifkan' : 'Aktifkan' ?>">
-                                            <i data-lucide="<?= $srv['is_active'] ? 'eye-off' : 'eye' ?>" style="width:14px; height:14px;"></i>
+                                        <button type="submit" class="btn-action <?= $srv['is_active'] ? 'btn-action-danger' : 'btn-action-primary' ?>" title="<?= $srv['is_active'] ? 'Nonaktifkan' : 'Aktifkan' ?>">
+                                            <i data-lucide="<?= $srv['is_active'] ? 'eye-off' : 'eye' ?>"></i>
+                                            <span><?= $srv['is_active'] ? 'Nonaktif' : 'Aktif' ?></span>
                                         </button>
                                     </form>
                                 </div>

@@ -111,12 +111,14 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <div style="display:flex; gap:6px;">
-                                    <a href="/inventory/<?= $it['id'] ?>" class="btn btn-outline btn-sm" title="Kartu Stok">
-                                        <i data-lucide="file-text" style="width:14px; height:14px;"></i> Kartu
+                                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                                    <a href="/inventory/<?= $it['id'] ?>" class="btn-action btn-action-view" title="Kartu Stok">
+                                        <i data-lucide="file-text"></i>
+                                        <span>Kartu</span>
                                     </a>
-                                    <a href="/inventory/<?= $it['id'] ?>/edit" class="btn btn-outline btn-sm" title="Ubah">
-                                        <i data-lucide="edit-2" style="width:14px; height:14px;"></i>
+                                    <a href="/inventory/<?= $it['id'] ?>/edit" class="btn-action btn-action-edit" title="Ubah Data">
+                                        <i data-lucide="edit"></i>
+                                        <span>Ubah</span>
                                     </a>
                                 </div>
                             </td>

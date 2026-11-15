@@ -69,7 +69,10 @@
                                 </span>
                             </td>
                             <td>
-                                <a href="/technicians/<?= $t['id'] ?>" class="btn btn-outline btn-sm">Lihat Detail</a>
+                                <a href="/technicians/<?= $t['id'] ?>" class="btn-action btn-action-view">
+                                    <i data-lucide="eye"></i>
+                                    <span>Detail</span>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

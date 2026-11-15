@@ -16,10 +16,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons (Local + CDN Fallback) -->
+    <script src="/assets/js/lucide.min.js"></script>
+    <script>if (typeof lucide === 'undefined') { document.write('<script src="https://unpkg.com/lucide@latest"><\/script>'); }</script>
+
+    <!-- Chart.js (Local + CDN Fallback) -->
+    <script src="/assets/js/chart.min.js"></script>
+    <script>if (typeof Chart === 'undefined') { document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>'); }</script>
     <script>window.APP_BASE_URL = '<?= base_path() ?>';</script>
 </head>
 <body>

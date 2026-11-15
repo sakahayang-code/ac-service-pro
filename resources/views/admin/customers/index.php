@@ -92,12 +92,14 @@
                                 </span>
                             </td>
                             <td>
-                                <div style="display:flex; gap:6px;">
-                                    <a href="/customers/<?= $c['id'] ?>" class="btn btn-outline btn-sm" title="Lihat Profil">
-                                        <i data-lucide="eye" style="width:14px; height:14px;"></i>
+                                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                                    <a href="/customers/<?= $c['id'] ?>" class="btn-action btn-action-view" title="Lihat Profil">
+                                        <i data-lucide="eye"></i>
+                                        <span>Detail</span>
                                     </a>
-                                    <a href="/customers/<?= $c['id'] ?>/edit" class="btn btn-outline btn-sm" title="Ubah">
-                                        <i data-lucide="edit-2" style="width:14px; height:14px;"></i>
+                                    <a href="/customers/<?= $c['id'] ?>/edit" class="btn-action btn-action-edit" title="Ubah Data">
+                                        <i data-lucide="edit"></i>
+                                        <span>Ubah</span>
                                     </a>
                                 </div>
                             </td>

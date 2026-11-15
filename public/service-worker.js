@@ -5,6 +5,8 @@ const RELATIVE_ASSETS = [
     'dashboard',
     'assets/css/style.css',
     'assets/js/app.js',
+    'assets/js/lucide.min.js',
+    'assets/js/chart.min.js',
     'assets/js/offline-db.js',
     'assets/icons/icon-192.png',
     'assets/icons/icon-512.png',

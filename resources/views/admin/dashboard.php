@@ -194,8 +194,9 @@
                                     <span class="badge badge-<?= $wo['status'] ?>"><?= str_replace('_', ' ', $wo['status']) ?></span>
                                 </td>
                                 <td style="text-align:center;">
-                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn btn-outline btn-sm" style="padding:4px 8px; min-height:28px;" title="Detail">
-                                        <i data-lucide="eye" style="width:14px; height:14px;"></i>
+                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn-action btn-action-view" title="Detail Work Order">
+                                        <i data-lucide="eye"></i>
+                                        <span>Detail</span>
                                     </a>
                                 </td>
                             </tr>

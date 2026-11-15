@@ -64,9 +64,17 @@ body {
   position: relative;
 }
 
-img, video, canvas, svg {
+img, video {
   max-width: 100%;
   height: auto;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+svg {
+  flex-shrink: 0;
 }
 
 iframe, embed, object {
@@ -545,13 +553,115 @@ a:hover {
 }
 
 .btn-outline {
-  background: transparent;
-  border-color: var(--border);
-  color: var(--text-main);
+  background: #ffffff !important;
+  border: 1.5px solid #94a3b8 !important;
+  color: #0f2a4a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06) !important;
 }
 .btn-outline:hover {
-  background: var(--surface-alt);
-  border-color: #cbd5e1;
+  background: #eff6ff !important;
+  border-color: #2563eb !important;
+  color: #2563eb !important;
+}
+
+/* Action Buttons in Tables & Lists (Always 100% Visible & Distinct) */
+.btn-action {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  padding: 6px 12px !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-sm) !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+  transition: all 0.15s ease !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  min-height: 30px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+.btn-action-view, .btn-action-primary {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+}
+.btn-action-view:hover, .btn-action-primary:hover {
+  background: #1d4ed8 !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4) !important;
+}
+
+.btn-action-edit {
+  background: #f59e0b !important;
+  color: #ffffff !important;
+  border-color: #d97706 !important;
+}
+.btn-action-edit:hover {
+  background: #d97706 !important;
+  color: #ffffff !important;
+}
+
+.btn-action-print {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+}
+.btn-action-print:hover {
+  background: #334155 !important;
+  color: #ffffff !important;
+}
+
+.btn-action-danger {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  border-color: #b91c1c !important;
+}
+.btn-action-danger:hover {
+  background: #b91c1c !important;
+  color: #ffffff !important;
+}
+
+.btn-action svg, .btn-action i,
+.btn svg, .btn i,
+svg.lucide, i[data-lucide] {
+  width: 15px !important;
+  height: 15px !important;
+  min-width: 15px !important;
+  min-height: 15px !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+  stroke: currentColor !important;
+  stroke-width: 2.2 !important;
+}
+
+.btn-icon,
+.btn:has(> svg:only-child),
+.btn:has(> i:only-child) {
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: var(--radius-sm) !important;
+  background: #eff6ff !important;
+  border: 1.5px solid #bfdbfe !important;
+  color: #1d4ed8 !important;
+}
+.btn-icon:hover,
+.btn:has(> svg:only-child):hover,
+.btn:has(> i:only-child):hover {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
 }
 
 .btn-danger {

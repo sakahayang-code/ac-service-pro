@@ -38,7 +38,10 @@
                             <td><span class="badge badge-<?= $h['status'] ?>"><?= str_replace('_', ' ', $h['status']) ?></span></td>
                             <td><strong style="color:var(--success);"><?= format_rupiah($h['commission_amount']) ?></strong></td>
                             <td>
-                                <a href="/technician/tasks/<?= $h['id'] ?>" class="btn btn-outline btn-sm">Lihat</a>
+                                <a href="/technician/tasks/<?= $h['id'] ?>" class="btn-action btn-action-view">
+                                    <i data-lucide="eye"></i>
+                                    <span>Detail</span>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

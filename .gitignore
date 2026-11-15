@@ -1,0 +1,42 @@
+# Environment & Local Configuration
+.env
+*.env
+.env.backup
+
+# Database SQLite Runtime Files
+storage/database/*.db-wal
+storage/database/*.db-shm
+storage/database/*.sqlite-wal
+storage/database/*.sqlite-shm
+storage/database/*.db-journal
+storage/database/*.lock
+
+# Sessions, Backups, Logs & Uploads (keep .gitkeep)
+storage/sessions/*
+!storage/sessions/.gitkeep
+storage/logs/*
+!storage/logs/.gitkeep
+storage/backups/*
+!storage/backups/.gitkeep
+storage/invoices/*
+!storage/invoices/.gitkeep
+storage/reports/*
+!storage/reports/.gitkeep
+storage/uploads/photos/*
+!storage/uploads/photos/.gitkeep
+storage/uploads/signatures/*
+!storage/uploads/signatures/.gitkeep
+storage/uploads/ac_units/*
+!storage/uploads/ac_units/.gitkeep
+storage/uploads/avatars/*
+!storage/uploads/avatars/.gitkeep
+
+# System, OS & Editor Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+.gemini/
+/tmp/

@@ -1,0 +1,41 @@
+{
+  "name": "AC Service Pro - Integrated Management System",
+  "short_name": "AC Service Pro",
+  "description": "Sistem Informasi Manajemen Usaha Jasa Servis AC Terintegrasi & Profesional",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#0f2a4a",
+  "theme_color": "#0f2a4a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Work Order Baru",
+      "short_name": "WO Baru",
+      "description": "Input pesanan / Work Order baru",
+      "url": "/work-orders/create",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Tugas Teknisi",
+      "short_name": "Tugas Saya",
+      "description": "Buka antarmuka tugas teknisi lapangan",
+      "url": "/technician/tasks",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

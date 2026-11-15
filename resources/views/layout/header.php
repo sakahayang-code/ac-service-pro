@@ -27,7 +27,10 @@
 </head>
 <body>
 <div class="app-container">
-    <!-- Desktop Sidebar -->
+    <!-- Overlay for Mobile Menu Drawer -->
+    <div id="mobile-drawer-overlay" class="mobile-drawer-overlay" onclick="toggleMobileMenuDrawer(false)"></div>
+
+    <!-- Desktop Sidebar / Mobile Slide-out Drawer -->
     <?php require __DIR__ . '/sidebar.php'; ?>
 
     <!-- Main Wrapper -->
@@ -70,16 +73,20 @@
             </div>
         </header>
 
-        <!-- Mobile Header (< 768px) -->
+        <!-- Mobile Header (< 768px) with Menu Button -->
         <header class="mobile-header">
+            <button type="button" id="mobile-menu-toggle-btn" class="mobile-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Buka Daftar Menu" title="Daftar Menu">
+                <i data-lucide="menu"></i>
+                <span>Menu</span>
+            </button>
             <div class="mobile-header-brand">
-                <div class="sidebar-brand-logo" style="width:30px; height:30px; font-size:0.85rem; border-radius:8px;">AC</div>
+                <div class="sidebar-brand-logo" style="width:28px; height:28px; font-size:0.8rem; border-radius:6px; flex-shrink:0;">AC</div>
                 <div style="min-width:0; overflow:hidden;">
                     <h2><?= htmlspecialchars($title ?? 'AC Service Pro') ?></h2>
                 </div>
             </div>
             <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
-                <select id="mobile-role-switcher" class="role-switcher-select" style="max-width:85px; font-size:0.7rem; padding:4px 6px; background:rgba(255,255,255,0.15); color:#ffffff; border-color:rgba(255,255,255,0.25);" onchange="window.location.href=(window.APP_BASE_URL || '') + '/auth/switch-role?role='+encodeURIComponent(this.value)">
+                <select id="mobile-role-switcher" class="role-switcher-select" style="max-width:82px; font-size:0.7rem; padding:4px 6px; background:rgba(255,255,255,0.15); color:#ffffff; border-color:rgba(255,255,255,0.25);" onchange="window.location.href=(window.APP_BASE_URL || '') + '/auth/switch-role?role='+encodeURIComponent(this.value)">
                     <option value="owner" <?= ($currentUser['role_name'] ?? '') === 'owner' ? 'selected' : '' ?>>Owner</option>
                     <option value="admin" <?= ($currentUser['role_name'] ?? '') === 'admin' ? 'selected' : '' ?>>Admin</option>
                     <option value="customer_service" <?= ($currentUser['role_name'] ?? '') === 'customer_service' ? 'selected' : '' ?>>CS</option>

@@ -11,7 +11,7 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
         </a>
         <a href="/technician/tasks" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/tasks') ? 'active' : '' ?>">
             <i data-lucide="wrench"></i>
-            <span>Tugas Saya</span>
+            <span>Tugas</span>
         </a>
         <a href="/technician/history" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/history') ? 'active' : '' ?>">
             <i data-lucide="history"></i>
@@ -21,6 +21,10 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
             <i data-lucide="user"></i>
             <span>Profil</span>
         </a>
+        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+            <i data-lucide="menu"></i>
+            <span>Menu</span>
+        </button>
 
     <?php elseif ($currentRole === 'customer'): ?>
         <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
@@ -31,10 +35,6 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
             <i data-lucide="calendar-plus"></i>
             <span>Pesan</span>
         </a>
-        <a href="/customer-portal/units" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/units') ? 'active' : '' ?>">
-            <i data-lucide="airplay"></i>
-            <span>AC Saya</span>
-        </a>
         <a href="/customer-portal/orders" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/orders') ? 'active' : '' ?>">
             <i data-lucide="clipboard-list"></i>
             <span>Status</span>
@@ -43,6 +43,10 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
             <i data-lucide="receipt"></i>
             <span>Faktur</span>
         </a>
+        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+            <i data-lucide="menu"></i>
+            <span>Menu</span>
+        </button>
 
     <?php elseif ($currentRole === 'cashier'): ?>
         <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
@@ -61,6 +65,10 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
             <i data-lucide="arrow-up-right"></i>
             <span>Pengeluaran</span>
         </a>
+        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+            <i data-lucide="menu"></i>
+            <span>Menu</span>
+        </button>
 
     <?php elseif ($currentRole === 'inventory'): ?>
         <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
@@ -79,6 +87,10 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
             <i data-lucide="truck"></i>
             <span>Supplier</span>
         </a>
+        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+            <i data-lucide="menu"></i>
+            <span>Menu</span>
+        </button>
 
     <?php else: ?>
         <!-- OWNER, ADMIN, CS -->
@@ -98,9 +110,9 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
             <i data-lucide="receipt"></i>
             <span>Faktur</span>
         </a>
-        <a href="/reports" class="mobile-nav-item <?= str_starts_with($currentPath, '/reports') ? 'active' : '' ?>">
-            <i data-lucide="bar-chart-3"></i>
-            <span>Laporan</span>
-        </a>
+        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+            <i data-lucide="menu"></i>
+            <span>Menu</span>
+        </button>
     <?php endif; ?>
 </nav>

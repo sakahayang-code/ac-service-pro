@@ -13,11 +13,16 @@ if (!function_exists('is_active_route')) {
 ?>
 <aside class="desktop-sidebar">
     <div class="sidebar-brand">
-        <div class="sidebar-brand-logo">AC</div>
-        <div class="sidebar-brand-text">
-            <h2>AC SERVICE PRO</h2>
-            <span>Management System</span>
+        <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
+            <div class="sidebar-brand-logo">AC</div>
+            <div class="sidebar-brand-text">
+                <h2>AC SERVICE PRO</h2>
+                <span>Management System</span>
+            </div>
         </div>
+        <button type="button" class="mobile-sidebar-close-btn" onclick="toggleMobileMenuDrawer(false)" aria-label="Tutup Menu" title="Tutup Menu">
+            <i data-lucide="x"></i>
+        </button>
     </div>
 
     <nav class="sidebar-nav">

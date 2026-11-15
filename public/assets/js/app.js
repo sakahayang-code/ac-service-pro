@@ -51,17 +51,55 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('online', updateNetworkStatus);
     window.addEventListener('offline', updateNetworkStatus);
-    updateNetworkStatus();
-
     // 4. Global Role Switcher Listener
     const roleSelect = document.getElementById('quick-role-switcher');
     if (roleSelect) {
         roleSelect.addEventListener('change', (e) => {
             const role = e.target.value;
             if (role) {
-                window.location.href = `/auth/switch-role?role=${encodeURIComponent(role)}`;
+                const base = window.APP_BASE_URL || '';
+                window.location.href = base + `/auth/switch-role?role=${encodeURIComponent(role)}`;
             }
         });
+    }
+
+    // 5. Close mobile drawer when a nav link is clicked
+    document.querySelectorAll('.desktop-sidebar .nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                window.toggleMobileMenuDrawer(false);
+            }
+        });
+    });
+});
+
+// Mobile Menu Drawer Controller
+window.toggleMobileMenuDrawer = function(forceOpen) {
+    const sidebar = document.querySelector('.desktop-sidebar');
+    const overlay = document.getElementById('mobile-drawer-overlay');
+    if (!sidebar) return;
+
+    const isOpen = sidebar.classList.contains('mobile-open');
+    const shouldOpen = typeof forceOpen === 'boolean' ? forceOpen : !isOpen;
+
+    if (shouldOpen) {
+        sidebar.classList.add('mobile-open');
+        if (overlay) overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } else {
+        sidebar.classList.remove('mobile-open');
+        if (overlay) overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};
+
+// Close mobile drawer on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const sidebar = document.querySelector('.desktop-sidebar');
+        if (sidebar && sidebar.classList.contains('mobile-open')) {
+            window.toggleMobileMenuDrawer(false);
+        }
     }
 });
 

@@ -9,19 +9,19 @@
     <meta name="theme-color" content="#0f2a4a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
-    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
+    <link rel="manifest" href="<?= url('manifest.json') ?>">
+    <link rel="icon" type="image/png" href="<?= asset('icons/favicon.png') ?>">
+    <link rel="apple-touch-icon" href="<?= asset('icons/icon-192.png') ?>">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="<?= asset('css/style.css') ?>">
     
     <!-- Lucide Icons (Local + CDN Fallback) -->
-    <script src="/assets/js/lucide.min.js"></script>
+    <script src="<?= asset('js/lucide.min.js') ?>"></script>
     <script>if (typeof lucide === 'undefined') { document.write('<script src="https://unpkg.com/lucide@latest"><\/script>'); }</script>
 
     <!-- Chart.js (Local + CDN Fallback) -->
-    <script src="/assets/js/chart.min.js"></script>
+    <script src="<?= asset('js/chart.min.js') ?>"></script>
     <script>if (typeof Chart === 'undefined') { document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>'); }</script>
     <script>window.APP_BASE_URL = '<?= base_path() ?>';</script>
 </head>
@@ -61,12 +61,12 @@
                 </div>
 
                 <!-- Notifications -->
-                <a href="/notifications" class="btn btn-outline btn-sm" style="position:relative; padding:6px 10px;" title="Notifikasi">
+                <a href="<?= url('notifications') ?>" class="btn btn-outline btn-sm" style="position:relative; padding:6px 10px;" title="Notifikasi">
                     <i data-lucide="bell" style="width:18px; height:18px;"></i>
                 </a>
 
                 <!-- User Profile / Logout -->
-                <a href="/logout" class="btn btn-outline btn-sm" style="color:var(--danger); border-color:#fee2e2;" title="Keluar">
+                <a href="<?= url('logout') ?>" class="btn btn-outline btn-sm" style="color:var(--danger); border-color:#fee2e2;" title="Keluar">
                     <i data-lucide="log-out" style="width:16px; height:16px;"></i>
                     <span>Keluar</span>
                 </a>
@@ -75,10 +75,10 @@
 
         <!-- Mobile Header (< 768px) with Menu Button -->
         <header class="mobile-header">
-            <button type="button" id="mobile-menu-toggle-btn" class="mobile-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Buka Daftar Menu" title="Daftar Menu">
+            <a href="<?= url('menu') ?>" id="mobile-menu-toggle-btn" class="mobile-menu-btn" aria-label="Buka Daftar Menu" title="Daftar Menu">
                 <i data-lucide="menu"></i>
                 <span>Menu</span>
-            </button>
+            </a>
             <div class="mobile-header-brand">
                 <div class="sidebar-brand-logo" style="width:28px; height:28px; font-size:0.8rem; border-radius:6px; flex-shrink:0;">AC</div>
                 <div style="min-width:0; overflow:hidden;">
@@ -95,7 +95,7 @@
                     <option value="inventory" <?= ($currentUser['role_name'] ?? '') === 'inventory' ? 'selected' : '' ?>>Gudang</option>
                     <option value="customer" <?= ($currentUser['role_name'] ?? '') === 'customer' ? 'selected' : '' ?>>Pelanggan</option>
                 </select>
-                <a href="/logout" style="color:#ffffff; opacity:0.9; display:flex; align-items:center; padding:4px;" title="Keluar">
+                <a href="<?= url('logout') ?>" style="color:#ffffff; opacity:0.9; display:flex; align-items:center; padding:4px;" title="Keluar">
                     <i data-lucide="log-out" style="width:18px; height:18px;"></i>
                 </a>
             </div>

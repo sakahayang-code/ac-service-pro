@@ -34,6 +34,7 @@ Router::get('/auth/switch-role', [AuthController::class, 'switchRole']);
 
 // Main Dashboard
 Router::get('/dashboard', [DashboardController::class, 'index'], ['auth']);
+Router::get('/menu', [DashboardController::class, 'menu'], ['auth']);
 
 // Customer Management (Modul 2)
 Router::get('/customers', [CustomerController::class, 'index'], ['auth']);

@@ -145,4 +145,18 @@ class DashboardController
             'chartExpenses' => $chartExpenses,
         ]);
     }
+
+    public function menu(): void
+    {
+        $user = Auth::user();
+        if (!$user) {
+            redirect('login');
+            return;
+        }
+
+        view('layout.menu', [
+            'title' => 'Daftar Menu',
+            'user' => $user,
+        ]);
+    }
 }

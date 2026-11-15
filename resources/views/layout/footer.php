@@ -18,8 +18,8 @@
 <div id="toast-container" class="toast-container"></div>
 
 <!-- Core Scripts -->
-<script src="/assets/js/offline-db.js"></script>
-<script src="/assets/js/app.js"></script>
+<script src="<?= asset('js/offline-db.js') ?>"></script>
+<script src="<?= asset('js/app.js') ?>"></script>
 <script>
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

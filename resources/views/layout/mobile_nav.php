@@ -5,114 +5,114 @@ $currentPath = \App\Services\Router::getCurrentRoutePath();
 ?>
 <nav class="mobile-bottom-nav">
     <?php if ($currentRole === 'technician'): ?>
-        <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
+        <a href="<?= url('dashboard') ?>" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
             <i data-lucide="layout-dashboard"></i>
             <span>Beranda</span>
         </a>
-        <a href="/technician/tasks" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/tasks') ? 'active' : '' ?>">
+        <a href="<?= url('technician/tasks') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/tasks') ? 'active' : '' ?>">
             <i data-lucide="wrench"></i>
             <span>Tugas</span>
         </a>
-        <a href="/technician/history" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/history') ? 'active' : '' ?>">
+        <a href="<?= url('technician/history') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/history') ? 'active' : '' ?>">
             <i data-lucide="history"></i>
             <span>Riwayat</span>
         </a>
-        <a href="/technician/profile" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/profile') ? 'active' : '' ?>">
+        <a href="<?= url('technician/profile') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/technician/profile') ? 'active' : '' ?>">
             <i data-lucide="user"></i>
             <span>Profil</span>
         </a>
-        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+        <a href="<?= url('menu') ?>" class="mobile-nav-item <?= $currentPath === '/menu' ? 'active' : '' ?>" aria-label="Daftar Menu">
             <i data-lucide="menu"></i>
             <span>Menu</span>
-        </button>
+        </a>
 
     <?php elseif ($currentRole === 'customer'): ?>
-        <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
+        <a href="<?= url('dashboard') ?>" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
             <i data-lucide="home"></i>
             <span>Beranda</span>
         </a>
-        <a href="/customer-portal/book" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/book') ? 'active' : '' ?>">
+        <a href="<?= url('customer-portal/book') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/book') ? 'active' : '' ?>">
             <i data-lucide="calendar-plus"></i>
             <span>Pesan</span>
         </a>
-        <a href="/customer-portal/orders" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/orders') ? 'active' : '' ?>">
+        <a href="<?= url('customer-portal/orders') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/orders') ? 'active' : '' ?>">
             <i data-lucide="clipboard-list"></i>
             <span>Status</span>
         </a>
-        <a href="/customer-portal/invoices" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/invoices') ? 'active' : '' ?>">
+        <a href="<?= url('customer-portal/invoices') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/customer-portal/invoices') ? 'active' : '' ?>">
             <i data-lucide="receipt"></i>
             <span>Faktur</span>
         </a>
-        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+        <a href="<?= url('menu') ?>" class="mobile-nav-item <?= $currentPath === '/menu' ? 'active' : '' ?>" aria-label="Daftar Menu">
             <i data-lucide="menu"></i>
             <span>Menu</span>
-        </button>
+        </a>
 
     <?php elseif ($currentRole === 'cashier'): ?>
-        <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
+        <a href="<?= url('dashboard') ?>" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
             <i data-lucide="layout-dashboard"></i>
             <span>Beranda</span>
         </a>
-        <a href="/invoices" class="mobile-nav-item <?= str_starts_with($currentPath, '/invoices') ? 'active' : '' ?>">
+        <a href="<?= url('invoices') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/invoices') ? 'active' : '' ?>">
             <i data-lucide="receipt"></i>
             <span>Faktur</span>
         </a>
-        <a href="/payments" class="mobile-nav-item <?= str_starts_with($currentPath, '/payments') ? 'active' : '' ?>">
+        <a href="<?= url('payments') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/payments') ? 'active' : '' ?>">
             <i data-lucide="wallet"></i>
             <span>Bayar</span>
         </a>
-        <a href="/expenses" class="mobile-nav-item <?= str_starts_with($currentPath, '/expenses') ? 'active' : '' ?>">
+        <a href="<?= url('expenses') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/expenses') ? 'active' : '' ?>">
             <i data-lucide="arrow-up-right"></i>
             <span>Pengeluaran</span>
         </a>
-        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+        <a href="<?= url('menu') ?>" class="mobile-nav-item <?= $currentPath === '/menu' ? 'active' : '' ?>" aria-label="Daftar Menu">
             <i data-lucide="menu"></i>
             <span>Menu</span>
-        </button>
+        </a>
 
     <?php elseif ($currentRole === 'inventory'): ?>
-        <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
+        <a href="<?= url('dashboard') ?>" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
             <i data-lucide="layout-dashboard"></i>
             <span>Beranda</span>
         </a>
-        <a href="/inventory" class="mobile-nav-item <?= str_starts_with($currentPath, '/inventory') ? 'active' : '' ?>">
+        <a href="<?= url('inventory') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/inventory') ? 'active' : '' ?>">
             <i data-lucide="boxes"></i>
             <span>Stok</span>
         </a>
-        <a href="/purchases" class="mobile-nav-item <?= str_starts_with($currentPath, '/purchases') ? 'active' : '' ?>">
+        <a href="<?= url('purchases') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/purchases') ? 'active' : '' ?>">
             <i data-lucide="shopping-cart"></i>
             <span>Beli</span>
         </a>
-        <a href="/suppliers" class="mobile-nav-item <?= str_starts_with($currentPath, '/suppliers') ? 'active' : '' ?>">
+        <a href="<?= url('suppliers') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/suppliers') ? 'active' : '' ?>">
             <i data-lucide="truck"></i>
             <span>Supplier</span>
         </a>
-        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+        <a href="<?= url('menu') ?>" class="mobile-nav-item <?= $currentPath === '/menu' ? 'active' : '' ?>" aria-label="Daftar Menu">
             <i data-lucide="menu"></i>
             <span>Menu</span>
-        </button>
+        </a>
 
     <?php else: ?>
         <!-- OWNER, ADMIN, CS -->
-        <a href="/dashboard" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
+        <a href="<?= url('dashboard') ?>" class="mobile-nav-item <?= $currentPath === '/dashboard' ? 'active' : '' ?>">
             <i data-lucide="layout-dashboard"></i>
             <span>Beranda</span>
         </a>
-        <a href="/work-orders" class="mobile-nav-item <?= str_starts_with($currentPath, '/work-orders') ? 'active' : '' ?>">
+        <a href="<?= url('work-orders') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/work-orders') ? 'active' : '' ?>">
             <i data-lucide="clipboard-check"></i>
             <span>Order</span>
         </a>
-        <a href="/customers" class="mobile-nav-item <?= str_starts_with($currentPath, '/customers') ? 'active' : '' ?>">
+        <a href="<?= url('customers') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/customers') ? 'active' : '' ?>">
             <i data-lucide="users"></i>
             <span>Pelanggan</span>
         </a>
-        <a href="/invoices" class="mobile-nav-item <?= str_starts_with($currentPath, '/invoices') ? 'active' : '' ?>">
+        <a href="<?= url('invoices') ?>" class="mobile-nav-item <?= str_starts_with($currentPath, '/invoices') ? 'active' : '' ?>">
             <i data-lucide="receipt"></i>
             <span>Faktur</span>
         </a>
-        <button type="button" class="mobile-nav-item mobile-nav-menu-btn" onclick="toggleMobileMenuDrawer(true)" aria-label="Daftar Menu">
+        <a href="<?= url('menu') ?>" class="mobile-nav-item <?= $currentPath === '/menu' ? 'active' : '' ?>" aria-label="Daftar Menu">
             <i data-lucide="menu"></i>
             <span>Menu</span>
-        </button>
+        </a>
     <?php endif; ?>
 </nav>

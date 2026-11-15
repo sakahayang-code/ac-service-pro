@@ -3,89 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title><?= htmlspecialchars($title ?? 'Dashboard') ?> - CoolService</title>
+    <title><?= htmlspecialchars($title ?? 'AC Service Pro') ?> - Sistem Manajemen Servis AC</title>
     
     <!-- PWA Meta -->
-    <meta name="theme-color" content="#1366d9">
+    <meta name="theme-color" content="#0f2a4a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
     <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    <!-- Lucide Icons & Chart.js -->
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>window.APP_BASE_URL = '<?= base_path() ?>';</script>
 </head>
 <body>
 <div class="app-container">
-    <!-- Desktop Sidebar matching CoolService reference design -->
+    <!-- Desktop Sidebar -->
     <?php require __DIR__ . '/sidebar.php'; ?>
 
     <!-- Main Wrapper -->
     <div class="main-wrapper">
-        <!-- Top Desktop Header (White bar matching mockup) -->
+        <!-- Top Header for Desktop -->
         <header class="top-header">
-            <div class="top-header-left">
-                <button type="button" class="menu-toggle-btn" aria-label="Toggle Navigation" onclick="document.querySelector('.desktop-sidebar').classList.toggle('show-mobile')">
-                    <i data-lucide="menu" style="width:22px; height:22px;"></i>
-                </button>
-                <h1 class="top-header-title"><?= htmlspecialchars($title ?? 'Dashboard') ?></h1>
+            <div class="header-title-box">
+                <h1><?= htmlspecialchars($title ?? 'Dashboard') ?></h1>
             </div>
             
-            <div class="top-header-right">
-                <!-- Role Switcher for seamless testing -->
-                <?php $currentUser = auth_user() ?? ['name' => 'Admin', 'role_name' => 'admin']; ?>
+            <div class="header-actions">
+                <!-- Live Network Status -->
+                <span id="network-status-badge" class="badge badge-green">Online</span>
+
+                <!-- Demo Role Switcher (Crucial for evaluation!) -->
+                <?php $currentUser = auth_user(); ?>
                 <div style="display:flex; align-items:center; gap:8px;">
-                    <select id="quick-role-switcher" class="role-switcher-select" onchange="window.location.href=(window.APP_BASE_URL || '') + '/auth/switch-role?role='+encodeURIComponent(this.value)">
-                        <option value="owner" <?= ($currentUser['role_name'] ?? '') === 'owner' ? 'selected' : '' ?>>👑 Owner</option>
-                        <option value="admin" <?= ($currentUser['role_name'] ?? '') === 'admin' ? 'selected' : '' ?>>⚙️ Admin</option>
-                        <option value="customer_service" <?= ($currentUser['role_name'] ?? '') === 'customer_service' ? 'selected' : '' ?>>🎧 CS</option>
-                        <option value="cashier" <?= ($currentUser['role_name'] ?? '') === 'cashier' ? 'selected' : '' ?>>💰 Kasir</option>
-                        <option value="technician" <?= ($currentUser['role_name'] ?? '') === 'technician' ? 'selected' : '' ?>>🔧 Teknisi</option>
-                        <option value="inventory" <?= ($currentUser['role_name'] ?? '') === 'inventory' ? 'selected' : '' ?>>📦 Gudang</option>
-                        <option value="customer" <?= ($currentUser['role_name'] ?? '') === 'customer' ? 'selected' : '' ?>>👤 Pelanggan</option>
+                    <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">Peran Aktif:</span>
+                    <select id="quick-role-switcher" class="role-switcher-select">
+                        <option value="owner" <?= ($currentUser['role_name'] ?? '') === 'owner' ? 'selected' : '' ?>>👑 Owner (Akses Penuh)</option>
+                        <option value="admin" <?= ($currentUser['role_name'] ?? '') === 'admin' ? 'selected' : '' ?>>⚙️ Admin (Operasional)</option>
+                        <option value="customer_service" <?= ($currentUser['role_name'] ?? '') === 'customer_service' ? 'selected' : '' ?>>🎧 Customer Service</option>
+                        <option value="cashier" <?= ($currentUser['role_name'] ?? '') === 'cashier' ? 'selected' : '' ?>>💰 Kasir & Keuangan</option>
+                        <option value="technician" <?= ($currentUser['role_name'] ?? '') === 'technician' ? 'selected' : '' ?>>🔧 Teknisi (Budi Santoso)</option>
+                        <option value="inventory" <?= ($currentUser['role_name'] ?? '') === 'inventory' ? 'selected' : '' ?>>📦 Gudang & Logistik</option>
+                        <option value="customer" <?= ($currentUser['role_name'] ?? '') === 'customer' ? 'selected' : '' ?>>👤 Portal Pelanggan</option>
                     </select>
                 </div>
 
-                <!-- Notifications with Red Badge '3' matching mockup -->
-                <a href="/notifications" class="header-bell-btn" title="Notifikasi">
-                    <i data-lucide="bell" style="width:20px; height:20px;"></i>
-                    <span class="header-bell-badge">3</span>
+                <!-- Notifications -->
+                <a href="/notifications" class="btn btn-outline btn-sm" style="position:relative; padding:6px 10px;" title="Notifikasi">
+                    <i data-lucide="bell" style="width:18px; height:18px;"></i>
                 </a>
 
-                <!-- User Profile Pill with Avatar and Dropdown Arrow matching mockup -->
-                <a href="/settings" class="header-user-pill" title="Profil & Pengaturan" style="text-decoration:none;">
-                    <div class="header-user-avatar">
-                        <?= strtoupper(substr($currentUser['name'] ?? 'A', 0, 1)) ?>
-                    </div>
-                    <span class="header-user-name"><?= htmlspecialchars(explode(' ', $currentUser['name'] ?? 'Admin')[0]) ?></span>
-                    <i data-lucide="chevron-down" style="width:16px; height:16px; color:#64748b;"></i>
+                <!-- User Profile / Logout -->
+                <a href="/logout" class="btn btn-outline btn-sm" style="color:var(--danger); border-color:#fee2e2;" title="Keluar">
+                    <i data-lucide="log-out" style="width:16px; height:16px;"></i>
+                    <span>Keluar</span>
                 </a>
             </div>
         </header>
 
-        <!-- Mobile Header (< 768px - Blue Top Bar matching mockup right phone) -->
+        <!-- Mobile Header (< 768px) -->
         <header class="mobile-header">
-            <div class="mobile-brand-box">
-                <i data-lucide="snowflake" style="width:26px; height:26px; stroke-width:2.5;"></i>
+            <div class="mobile-header-brand">
+                <div class="sidebar-brand-logo" style="width:32px; height:32px; font-size:0.9rem;">AC</div>
                 <div>
-                    <div class="mobile-brand-title">CoolService</div>
-                    <div class="mobile-brand-sub">Service AC Profesional</div>
+                    <h2><?= htmlspecialchars($title ?? 'AC Service Pro') ?></h2>
                 </div>
             </div>
-            
-            <div style="display:flex; align-items:center; gap:12px;">
-                <select id="mobile-role-switcher" class="role-switcher-select" style="max-width:85px; font-size:0.7rem; padding:4px 6px; background:rgba(255,255,255,0.18); color:#ffffff; border:1px solid rgba(255,255,255,0.3); border-radius:8px;" onchange="window.location.href=(window.APP_BASE_URL || '') + '/auth/switch-role?role='+encodeURIComponent(this.value)">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <select id="mobile-role-switcher" class="role-switcher-select" style="max-width:130px; font-size:0.75rem; padding:4px 8px;" onchange="window.location.href='/auth/switch-role?role='+encodeURIComponent(this.value)">
                     <option value="owner" <?= ($currentUser['role_name'] ?? '') === 'owner' ? 'selected' : '' ?>>Owner</option>
                     <option value="admin" <?= ($currentUser['role_name'] ?? '') === 'admin' ? 'selected' : '' ?>>Admin</option>
                     <option value="customer_service" <?= ($currentUser['role_name'] ?? '') === 'customer_service' ? 'selected' : '' ?>>CS</option>
@@ -94,15 +85,22 @@
                     <option value="inventory" <?= ($currentUser['role_name'] ?? '') === 'inventory' ? 'selected' : '' ?>>Gudang</option>
                     <option value="customer" <?= ($currentUser['role_name'] ?? '') === 'customer' ? 'selected' : '' ?>>Pelanggan</option>
                 </select>
-
-                <a href="/notifications" style="position:relative; color:#ffffff; display:flex; align-items:center;" title="Notifikasi">
-                    <i data-lucide="bell" style="width:22px; height:22px;"></i>
-                    <span style="position:absolute; top:-3px; right:-3px; width:15px; height:15px; background:#ef4444; color:#ffffff; font-size:0.6rem; font-weight:800; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid #1366d9;">3</span>
+                <a href="/logout" style="color:#ffffff;" title="Keluar">
+                    <i data-lucide="log-out" style="width:20px; height:20px;"></i>
                 </a>
             </div>
         </header>
 
-        <!-- Flash Messages -->
+        <!-- PWA Install Banner (Mobile Touch) -->
+        <div id="pwa-install-banner" style="display:none; background:var(--primary-light); color:#ffffff; padding:10px 16px; align-items:center; justify-content:space-between; font-size:0.85rem;">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <i data-lucide="download" style="width:20px; height:20px; color:var(--accent);"></i>
+                <span>Pasang aplikasi AC Service Pro di HP Android Anda?</span>
+            </div>
+            <button id="pwa-install-btn" class="btn btn-accent btn-sm" style="padding:4px 12px; font-size:0.75rem;">Pasang</button>
+        </div>
+
+        <!-- Main Body -->
         <main class="content-body">
             <?php if (!empty($_SESSION['flash_success'])): ?>
                 <div class="card" style="background:#f0fdf4; border-color:#bbf7d0; color:#166534; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">

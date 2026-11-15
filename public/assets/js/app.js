@@ -59,8 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         roleSelect.addEventListener('change', (e) => {
             const role = e.target.value;
             if (role) {
-                const baseUrl = window.APP_BASE_URL || '';
-                window.location.href = `${baseUrl}/auth/switch-role?role=${encodeURIComponent(role)}`;
+                window.location.href = `/auth/switch-role?role=${encodeURIComponent(role)}`;
             }
         });
     }

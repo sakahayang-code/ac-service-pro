@@ -35,14 +35,6 @@ class DashboardController
         $thisMonth = date('Y-m');
 
         // Work Order Counters
-        $totalOrders = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE deleted_at IS NULL")->fetchColumn();
-        if ($totalOrders < 24) $totalOrders = 24;
-        $woCancelled = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status = 'DIBATALKAN' AND deleted_at IS NULL")->fetchColumn();
-        $woCompletedCount = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status IN ('SELESAI', 'DITAGIHKAN', 'LUNAS') AND deleted_at IS NULL")->fetchColumn();
-        if ($woCompletedCount < 20) $woCompletedCount = 20;
-        $woInProcessCount = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status IN ('BARU', 'DIKONFIRMASI', 'DIJADWALKAN', 'DALAM_PERJALANAN', 'SEDANG_DIKERJAKAN', 'MENUNGGU_SPAREPART') AND deleted_at IS NULL")->fetchColumn();
-        if ($woInProcessCount < 4) $woInProcessCount = 4;
-
         $woToday = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE scheduled_date = '$today' AND deleted_at IS NULL")->fetchColumn();
         $woNew = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status = 'BARU' AND deleted_at IS NULL")->fetchColumn();
         $woConfirmed = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status = 'DIKONFIRMASI' AND deleted_at IS NULL")->fetchColumn();
@@ -50,18 +42,6 @@ class DashboardController
         $woInProgress = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status IN ('DALAM_PERJALANAN', 'SEDANG_DIKERJAKAN', 'MENUNGGU_SPAREPART') AND deleted_at IS NULL")->fetchColumn();
         $woCompleted = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status IN ('SELESAI', 'DITAGIHKAN', 'LUNAS') AND scheduled_date = '$today' AND deleted_at IS NULL")->fetchColumn();
         $woPending = (int)$pdo->query("SELECT count(*) FROM work_orders WHERE status = 'DITUNDA' AND deleted_at IS NULL")->fetchColumn();
-
-        // Weekly Orders (7 Days matching mockup)
-        $weeklyLabels = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
-        $weeklyCounts = [8, 10, 12, 15, 18, 14, 10];
-
-        // Popular Services
-        $popularServices = [
-            ['name' => 'Cuci AC', 'percentage' => 45, 'color' => '#2563eb'],
-            ['name' => 'Isi Freon', 'percentage' => 30, 'color' => '#10b981'],
-            ['name' => 'Service Ringan', 'percentage' => 15, 'color' => '#f59e0b'],
-            ['name' => 'Service Berat', 'percentage' => 10, 'color' => '#8b5cf6'],
-        ];
 
         // Customer & Technician Counts
         $totalCustomers = (int)$pdo->query("SELECT count(*) FROM customers WHERE deleted_at IS NULL")->fetchColumn();
@@ -142,13 +122,6 @@ class DashboardController
             'title' => 'Dashboard Utama',
             'user' => $user,
             'role' => $role,
-            'totalOrders' => $totalOrders,
-            'woCancelled' => $woCancelled,
-            'woCompletedCount' => $woCompletedCount,
-            'woInProcessCount' => $woInProcessCount,
-            'weeklyLabels' => $weeklyLabels,
-            'weeklyCounts' => $weeklyCounts,
-            'popularServices' => $popularServices,
             'woToday' => $woToday,
             'woNew' => $woNew,
             'woConfirmed' => $woConfirmed,

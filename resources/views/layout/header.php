@@ -13,6 +13,11 @@
     <link rel="icon" type="image/png" href="/assets/icons/favicon.png">
     <link rel="apple-touch-icon" href="/assets/icons/icon-192.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/style.css">
     
@@ -70,13 +75,15 @@
         <!-- Mobile Header (< 768px) -->
         <header class="mobile-header">
             <div class="mobile-header-brand">
-                <div class="sidebar-brand-logo" style="width:32px; height:32px; font-size:0.9rem;">AC</div>
+                <div class="sidebar-brand-logo" style="width:34px; height:34px; border-radius:10px;">
+                    <i data-lucide="snowflake" style="width:18px; height:18px;"></i>
+                </div>
                 <div>
                     <h2><?= htmlspecialchars($title ?? 'AC Service Pro') ?></h2>
                 </div>
             </div>
             <div style="display:flex; align-items:center; gap:8px;">
-                <select id="mobile-role-switcher" class="role-switcher-select" style="max-width:130px; font-size:0.75rem; padding:4px 8px;" onchange="window.location.href='/auth/switch-role?role='+encodeURIComponent(this.value)">
+                <select id="mobile-role-switcher" class="role-switcher-select" style="max-width:130px; font-size:0.75rem; padding:5px 8px;" onchange="window.location.href=(window.APP_BASE_URL || '') + '/auth/switch-role?role='+encodeURIComponent(this.value)">
                     <option value="owner" <?= ($currentUser['role_name'] ?? '') === 'owner' ? 'selected' : '' ?>>Owner</option>
                     <option value="admin" <?= ($currentUser['role_name'] ?? '') === 'admin' ? 'selected' : '' ?>>Admin</option>
                     <option value="customer_service" <?= ($currentUser['role_name'] ?? '') === 'customer_service' ? 'selected' : '' ?>>CS</option>
@@ -85,7 +92,7 @@
                     <option value="inventory" <?= ($currentUser['role_name'] ?? '') === 'inventory' ? 'selected' : '' ?>>Gudang</option>
                     <option value="customer" <?= ($currentUser['role_name'] ?? '') === 'customer' ? 'selected' : '' ?>>Pelanggan</option>
                 </select>
-                <a href="/logout" style="color:#ffffff;" title="Keluar">
+                <a href="/logout" style="color:#ffffff; opacity:0.85; display:flex; align-items:center; padding:4px;" title="Keluar">
                     <i data-lucide="log-out" style="width:20px; height:20px;"></i>
                 </a>
             </div>

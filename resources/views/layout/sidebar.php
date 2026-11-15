@@ -13,10 +13,12 @@ if (!function_exists('is_active_route')) {
 ?>
 <aside class="desktop-sidebar">
     <div class="sidebar-brand">
-        <div class="sidebar-brand-logo">AC</div>
+        <div class="sidebar-brand-logo">
+            <i data-lucide="snowflake" style="width:22px; height:22px;"></i>
+        </div>
         <div class="sidebar-brand-text">
             <h2>AC SERVICE PRO</h2>
-            <span>Management System</span>
+            <span>Enterprise System</span>
         </div>
     </div>
 
@@ -161,5 +163,8 @@ if (!function_exists('is_active_route')) {
             <div class="user-name"><?= htmlspecialchars($user['name'] ?? 'User') ?></div>
             <span class="user-role-badge"><?= htmlspecialchars($user['role_display_name'] ?? $currentRole) ?></span>
         </div>
+        <a href="/logout" title="Keluar dari akun" style="color:#ef4444; opacity:0.8; padding:6px; border-radius:8px; display:flex; align-items:center; justify-content:center; transition:all 0.15s ease;" onmouseover="this.style.opacity='1'; this.style.background='rgba(239,68,68,0.15)'" onmouseout="this.style.opacity='0.8'; this.style.background='transparent'">
+            <i data-lucide="log-out" style="width:18px; height:18px;"></i>
+        </a>
     </div>
 </aside>

@@ -1,6 +1,6 @@
         </main>
         <!-- Footer Info for Desktop -->
-        <footer class="no-print" style="padding:16px 24px; font-size:0.8rem; color:var(--text-muted); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:var(--surface);">
+        <footer class="no-print" style="padding:16px 20px; font-size:0.8rem; color:var(--text-muted); border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; background:var(--surface); flex-wrap:wrap; gap:10px; box-sizing:border-box; width:100%; max-width:100%;">
             <div>
                 &copy; <?= date('Y') ?> <strong><?= htmlspecialchars(app_config('company.name')) ?></strong>. All rights reserved.
             </div>

@@ -1,35 +1,35 @@
 <?php require dirname(__DIR__) . '/layout/header.php'; ?>
 
 <!-- Welcome & Greeting Card -->
-<div class="card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color:#ffffff; padding:24px; position:relative; overflow:hidden;">
+<div class="card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color:#ffffff; padding:20px; position:relative; overflow:hidden;">
     <div style="position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <div>
-            <div style="font-size:0.85rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">
+        <div style="min-width:0; flex:1 1 260px;">
+            <div style="font-size:0.8rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">
                 Selamat Datang di Sistem Operasional
             </div>
-            <h2 style="color:#ffffff; font-size:1.5rem; font-weight:800;"><?= htmlspecialchars($user['name']) ?></h2>
-            <p style="color:#cbd5e1; font-size:0.9rem; margin-top:2px;">
+            <h2 style="color:#ffffff; font-size:1.35rem; font-weight:800; word-break:break-word;"><?= htmlspecialchars($user['name']) ?></h2>
+            <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
                 Peran: <strong><?= htmlspecialchars($user['role_display_name']) ?></strong> &bull; <?= date('l, d F Y') ?> (WIB)
             </p>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <a href="/work-orders/create" class="btn btn-accent" style="box-shadow: 0 4px 12px rgba(6,182,212,0.4);">
-                <i data-lucide="plus-circle" style="width:18px; height:18px;"></i>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; max-width:100%;">
+            <a href="/work-orders/create" class="btn btn-accent" style="box-shadow: 0 4px 12px rgba(6,182,212,0.4); white-space:nowrap;">
+                <i data-lucide="plus-circle" style="width:16px; height:16px;"></i>
                 <span>Work Order Baru</span>
             </a>
-            <a href="/customers/create" class="btn btn-outline" style="background:rgba(255,255,255,0.15); color:#ffffff; border-color:rgba(255,255,255,0.3);">
-                <i data-lucide="user-plus" style="width:18px; height:18px;"></i>
+            <a href="/customers/create" class="btn btn-outline" style="background:rgba(255,255,255,0.15); color:#ffffff; border-color:rgba(255,255,255,0.3); white-space:nowrap;">
+                <i data-lucide="user-plus" style="width:16px; height:16px;"></i>
                 <span>Tambah Pelanggan</span>
             </a>
         </div>
     </div>
 </div>
 
-<!-- Primary KPI Stat Cards -->
+<!-- Primary KPI Stat Cards (4 Columns desktop, 2 Columns mobile, 0% overflow) -->
 <div class="stat-grid">
     <div class="stat-card">
         <div class="stat-icon primary">
-            <i data-lucide="calendar-check" style="width:24px; height:24px;"></i>
+            <i data-lucide="calendar-check" style="width:22px; height:22px;"></i>
         </div>
         <div>
             <div class="stat-value"><?= number_format($woToday) ?></div>
@@ -39,7 +39,7 @@
 
     <div class="stat-card">
         <div class="stat-icon warning">
-            <i data-lucide="wrench" style="width:24px; height:24px;"></i>
+            <i data-lucide="wrench" style="width:22px; height:22px;"></i>
         </div>
         <div>
             <div class="stat-value"><?= number_format($woInProgress) ?></div>
@@ -50,20 +50,20 @@
     <?php if (in_array($role, ['owner', 'cashier', 'admin'])): ?>
     <div class="stat-card">
         <div class="stat-icon success">
-            <i data-lucide="trending-up" style="width:24px; height:24px;"></i>
+            <i data-lucide="trending-up" style="width:22px; height:22px;"></i>
         </div>
         <div>
-            <div class="stat-value" style="font-size:1.25rem;"><?= format_rupiah($incomeMonth) ?></div>
+            <div class="stat-value"><?= format_rupiah($incomeMonth) ?></div>
             <div class="stat-label">Pendapatan Bulan Ini</div>
         </div>
     </div>
 
     <div class="stat-card">
         <div class="stat-icon danger">
-            <i data-lucide="clock" style="width:24px; height:24px;"></i>
+            <i data-lucide="clock" style="width:22px; height:22px;"></i>
         </div>
         <div>
-            <div class="stat-value" style="font-size:1.25rem;"><?= format_rupiah($totalReceivables) ?></div>
+            <div class="stat-value"><?= format_rupiah($totalReceivables) ?></div>
             <div class="stat-label">Total Piutang Berjalan</div>
         </div>
     </div>
@@ -71,34 +71,34 @@
 </div>
 
 <!-- Operational Status Summary Pills -->
-<div class="card" style="padding:16px 20px;">
-    <div style="font-size:0.85rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:12px;">
+<div class="card" style="padding:16px 18px;">
+    <div style="font-size:0.82rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:12px;">
         Status Operasional Work Order
     </div>
-    <div style="display:flex; flex-wrap:wrap; gap:10px;">
-        <a href="/work-orders?status=BARU" class="badge badge-BARU" style="padding:8px 14px; font-size:0.8rem; text-decoration:none;">
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        <a href="/work-orders?status=BARU" class="badge badge-BARU" style="padding:6px 12px; font-size:0.75rem; text-decoration:none; white-space:nowrap;">
             Baru Masuk: <strong><?= $woNew ?></strong>
         </a>
-        <a href="/work-orders?status=DIKONFIRMASI" class="badge badge-DIKONFIRMASI" style="padding:8px 14px; font-size:0.8rem; text-decoration:none;">
+        <a href="/work-orders?status=DIKONFIRMASI" class="badge badge-DIKONFIRMASI" style="padding:6px 12px; font-size:0.75rem; text-decoration:none; white-space:nowrap;">
             Dikonfirmasi: <strong><?= $woConfirmed ?></strong>
         </a>
-        <a href="/work-orders?status=DIJADWALKAN" class="badge badge-DIJADWALKAN" style="padding:8px 14px; font-size:0.8rem; text-decoration:none;">
+        <a href="/work-orders?status=DIJADWALKAN" class="badge badge-DIJADWALKAN" style="padding:6px 12px; font-size:0.75rem; text-decoration:none; white-space:nowrap;">
             Terjadwal: <strong><?= $woScheduled ?></strong>
         </a>
-        <a href="/work-orders?status=SEDANG_DIKERJAKAN" class="badge badge-SEDANG_DIKERJAKAN" style="padding:8px 14px; font-size:0.8rem; text-decoration:none;">
+        <a href="/work-orders?status=SEDANG_DIKERJAKAN" class="badge badge-SEDANG_DIKERJAKAN" style="padding:6px 12px; font-size:0.75rem; text-decoration:none; white-space:nowrap;">
             Sedang Jalan: <strong><?= $woInProgress ?></strong>
         </a>
-        <a href="/work-orders?status=SELESAI" class="badge badge-SELESAI" style="padding:8px 14px; font-size:0.8rem; text-decoration:none;">
+        <a href="/work-orders?status=SELESAI" class="badge badge-SELESAI" style="padding:6px 12px; font-size:0.75rem; text-decoration:none; white-space:nowrap;">
             Selesai Hari Ini: <strong><?= $woCompleted ?></strong>
         </a>
-        <a href="/work-orders?status=DITUNDA" class="badge badge-DITUNDA" style="padding:8px 14px; font-size:0.8rem; text-decoration:none;">
+        <a href="/work-orders?status=DITUNDA" class="badge badge-DITUNDA" style="padding:6px 12px; font-size:0.75rem; text-decoration:none; white-space:nowrap;">
             Tertunda: <strong><?= $woPending ?></strong>
         </a>
     </div>
 </div>
 
-<!-- Grid: Charts & Leaderboard -->
-<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px; margin-bottom:20px;">
+<!-- Grid: Charts & Leaderboard (Fluid 2-Column or 1-Column Mobile) -->
+<div class="dashboard-grid-2col">
     <!-- Revenue Chart Card -->
     <?php if (in_array($role, ['owner', 'admin'])): ?>
     <div class="card" style="margin-bottom:0;">
@@ -109,7 +109,7 @@
             </div>
             <span style="font-size:0.75rem; color:var(--text-muted);">6 Bulan Terakhir</span>
         </div>
-        <div style="position:relative; height:240px;">
+        <div style="position:relative; height:240px; width:100%; max-width:100%; overflow:hidden;">
             <canvas id="revenueChart"></canvas>
         </div>
     </div>
@@ -124,24 +124,24 @@
             </div>
             <a href="/technicians" style="font-size:0.8rem; font-weight:600;">Lihat Semua</a>
         </div>
-        <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; flex-direction:column; gap:10px;">
             <?php if (empty($technicianLeaderboard)): ?>
                 <div style="text-align:center; padding:20px; color:var(--text-muted); font-size:0.85rem;">Belum ada data teknisi.</div>
             <?php else: ?>
                 <?php foreach ($technicianLeaderboard as $idx => $t): ?>
-                    <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--surface-alt); border-radius:var(--radius-sm);">
-                        <div style="display:flex; align-items:center; gap:12px;">
-                            <div style="width:28px; height:28px; border-radius:50%; background:<?= $idx === 0 ? '#fef08a' : '#e2e8f0' ?>; color:<?= $idx === 0 ? '#854d0e' : '#475569' ?>; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; padding:8px 12px; background:var(--surface-alt); border-radius:var(--radius-sm); min-width:0; gap:8px;">
+                        <div style="display:flex; align-items:center; gap:10px; min-width:0; overflow:hidden;">
+                            <div style="width:26px; height:26px; border-radius:50%; background:<?= $idx === 0 ? '#fef08a' : '#e2e8f0' ?>; color:<?= $idx === 0 ? '#854d0e' : '#475569' ?>; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.75rem; flex-shrink:0;">
                                 <?= $idx + 1 ?>
                             </div>
-                            <div>
-                                <div style="font-weight:700; font-size:0.9rem; color:var(--primary);"><?= htmlspecialchars($t['full_name']) ?></div>
-                                <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($t['code']) ?> &bull; <?= htmlspecialchars($t['work_area']) ?></div>
+                            <div style="min-width:0; overflow:hidden;">
+                                <div style="font-weight:700; font-size:0.85rem; color:var(--primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($t['full_name']) ?></div>
+                                <div style="font-size:0.72rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($t['code']) ?> &bull; <?= htmlspecialchars($t['work_area']) ?></div>
                             </div>
                         </div>
-                        <div style="text-align:right;">
-                            <div style="font-weight:700; font-size:0.85rem; color:var(--success);">⭐ <?= number_format((float)$t['rating'], 1) ?></div>
-                            <div style="font-size:0.75rem; color:var(--text-muted);"><?= (int)$t['total_jobs_done'] ?> servis selesai</div>
+                        <div style="text-align:right; flex-shrink:0;">
+                            <div style="font-weight:700; font-size:0.82rem; color:var(--success);">⭐ <?= number_format((float)$t['rating'], 1) ?></div>
+                            <div style="font-size:0.7rem; color:var(--text-muted);"><?= (int)$t['total_jobs_done'] ?> servis</div>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -151,9 +151,9 @@
 </div>
 
 <!-- Grid: Work Orders & Stock Alerts -->
-<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+<div class="dashboard-grid-2col">
     <!-- Recent Work Orders -->
-    <div class="card" style="grid-column: span 1;">
+    <div class="card" style="margin-bottom:0;">
         <div class="card-header">
             <div class="card-title">
                 <i data-lucide="clipboard-list"></i>
@@ -169,12 +169,12 @@
                         <th>Pelanggan</th>
                         <th>Jadwal</th>
                         <th>Status</th>
-                        <th>Aksi</th>
+                        <th style="text-align:center;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (empty($recentWorkOrders)): ?>
-                        <tr><td colspan="5" style="text-align:center; color:var(--text-muted);">Belum ada order pekerjaan.</td></tr>
+                        <tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:20px;">Belum ada order pekerjaan.</td></tr>
                     <?php else: ?>
                         <?php foreach ($recentWorkOrders as $wo): ?>
                             <tr>
@@ -183,18 +183,18 @@
                                     <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($wo['ac_brand'] ?? 'AC') ?> (<?= htmlspecialchars($wo['capacity_pk'] ?? '1 PK') ?>)</div>
                                 </td>
                                 <td>
-                                    <div><?= htmlspecialchars($wo['customer_name']) ?></div>
+                                    <div style="font-weight:600;"><?= htmlspecialchars($wo['customer_name']) ?></div>
                                     <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($wo['customer_phone']) ?></div>
                                 </td>
                                 <td>
                                     <div><?= format_date($wo['scheduled_date']) ?></div>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);">Jam: <?= htmlspecialchars($wo['scheduled_time']) ?></div>
+                                    <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($wo['scheduled_time']) ?></div>
                                 </td>
                                 <td>
                                     <span class="badge badge-<?= $wo['status'] ?>"><?= str_replace('_', ' ', $wo['status']) ?></span>
                                 </td>
-                                <td>
-                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn btn-outline btn-sm" title="Detail">
+                                <td style="text-align:center;">
+                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn btn-outline btn-sm" style="padding:4px 8px; min-height:28px;" title="Detail">
                                         <i data-lucide="eye" style="width:14px; height:14px;"></i>
                                     </a>
                                 </td>
@@ -207,7 +207,7 @@
     </div>
 
     <!-- Right Sidebar Widgets -->
-    <div style="display:flex; flex-direction:column; gap:20px;">
+    <div style="display:flex; flex-direction:column; gap:16px;">
         <!-- Low Stock Alerts -->
         <div class="card" style="margin-bottom:0;">
             <div class="card-header">
@@ -220,20 +220,20 @@
             <div>
                 <?php if (empty($lowStockItems)): ?>
                     <div style="padding:12px; text-align:center; color:var(--success); font-size:0.85rem;">
-                        <i data-lucide="check-circle" style="width:20px; height:20px; display:inline-block; vertical-align:middle; margin-right:4px;"></i>
+                        <i data-lucide="check-circle" style="width:18px; height:18px; display:inline-block; vertical-align:middle; margin-right:4px;"></i>
                         Semua stok sparepart berada di atas batas minimum.
                     </div>
                 <?php else: ?>
                     <div style="display:flex; flex-direction:column; gap:8px;">
                         <?php foreach ($lowStockItems as $item): ?>
-                            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#fff1f2; border:1px solid #ffe4e6; border-radius:var(--radius-sm);">
-                                <div>
-                                    <div style="font-weight:700; font-size:0.85rem; color:var(--text-main);"><?= htmlspecialchars($item['name']) ?></div>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);">SKU: <?= htmlspecialchars($item['sku']) ?></div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#fff1f2; border:1px solid #ffe4e6; border-radius:var(--radius-sm); gap:8px; min-width:0;">
+                                <div style="min-width:0; overflow:hidden;">
+                                    <div style="font-weight:700; font-size:0.85rem; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($item['name']) ?></div>
+                                    <div style="font-size:0.72rem; color:var(--text-muted);">SKU: <?= htmlspecialchars($item['sku']) ?></div>
                                 </div>
-                                <div style="text-align:right;">
-                                    <span class="badge badge-red" style="font-size:0.75rem;">Sisa: <?= $item['current_stock'] ?> <?= $item['unit'] ?></span>
-                                    <div style="font-size:0.7rem; color:var(--text-muted); margin-top:2px;">Min: <?= $item['min_stock'] ?></div>
+                                <div style="text-align:right; flex-shrink:0;">
+                                    <span class="badge badge-red" style="font-size:0.72rem;">Sisa: <?= $item['current_stock'] ?> <?= $item['unit'] ?></span>
+                                    <div style="font-size:0.68rem; color:var(--text-muted); margin-top:2px;">Min: <?= $item['min_stock'] ?></div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -258,15 +258,15 @@
                 <?php else: ?>
                     <div style="display:flex; flex-direction:column; gap:8px;">
                         <?php foreach ($serviceReminders as $rem): ?>
-                            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--surface-alt); border-radius:var(--radius-sm);">
-                                <div>
-                                    <div style="font-weight:700; font-size:0.85rem; color:var(--primary);"><?= htmlspecialchars($rem['customer_name']) ?></div>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($rem['brand']) ?> &bull; <?= htmlspecialchars($rem['room_location']) ?></div>
+                            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--surface-alt); border-radius:var(--radius-sm); gap:8px; min-width:0;">
+                                <div style="min-width:0; overflow:hidden;">
+                                    <div style="font-weight:700; font-size:0.85rem; color:var(--primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($rem['customer_name']) ?></div>
+                                    <div style="font-size:0.72rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($rem['brand']) ?> &bull; <?= htmlspecialchars($rem['room_location']) ?></div>
                                 </div>
-                                <div style="text-align:right;">
+                                <div style="text-align:right; flex-shrink:0;">
                                     <span class="badge badge-amber" style="font-size:0.7rem;">Tempo: <?= format_date($rem['due_date']) ?></span>
                                     <div style="margin-top:4px;">
-                                        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $rem['customer_phone']) ?>?text=Halo%20<?= urlencode($rem['customer_name']) ?>,%20AC%20Anda%20sudah%20waktunya%20servis%20rutin" target="_blank" class="btn btn-sm btn-outline" style="padding:2px 8px; font-size:0.7rem; color:#16a34a; border-color:#bbf7d0;">
+                                        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $rem['customer_phone']) ?>?text=Halo%20<?= urlencode($rem['customer_name']) ?>,%20AC%20Anda%20sudah%20waktunya%20servis%20rutin" target="_blank" class="btn btn-sm btn-outline" style="padding:2px 8px; font-size:0.7rem; color:#16a34a; border-color:#bbf7d0; min-height:24px;">
                                             <i data-lucide="message-circle" style="width:12px; height:12px;"></i> WA
                                         </a>
                                     </div>

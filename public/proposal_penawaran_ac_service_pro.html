@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Penawaran Aplikasi AC Service Pro - Muhdir Abdillah, A.Md., Kom.</title>
+    <style>
+        :root {
+            --primary: #0f2a4a;
+            --primary-light: #1e3a5f;
+            --secondary: #2563eb;
+            --accent: #06b6d4;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --surface: #ffffff;
+            --border: #e2e8f0;
+            --success: #16a34a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px 15px;
+        }
+
+        .proposal-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(15, 42, 74, 0.08);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        /* Top Action Bar */
+        .top-action-bar {
+            background: #f1f5f9;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-print {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-wa {
+            background: #16a34a;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Header Proposal */
+        .proposal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #173860 100%);
+            color: #ffffff;
+            padding: 40px;
+            position: relative;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .header-logo-badge {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 900;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .header-title h1 {
+            font-size: 1.8rem;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-top: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .meta-item small {
+            display: block;
+            font-size: 0.72rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .meta-item strong {
+            font-size: 0.95rem;
+            color: #ffffff;
+        }
+
+        /* Body Sections */
+        .proposal-body {
+            padding: 40px;
+        }
+
+        h2.section-heading {
+            font-size: 1.25rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+            margin-top: 36px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2.section-heading:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #334155;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        /* Image Showcase */
+        .screenshot-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+            background: #ffffff;
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screenshot-caption {
+            padding: 10px 16px;
+            background: #f8fafc;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            font-weight: 600;
+        }
+
+        .mobile-screenshots-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        /* Tables */
+        table.spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.88rem;
+        }
+
+        table.spec-table th, table.spec-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        table.spec-table th {
+            background: #f1f5f9;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        table.spec-table tr:nth-child(even) td {
+            background: #fafafa;
+        }
+
+        /* Pricing Card */
+        .pricing-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid #86efac;
+            border-radius: 10px;
+            padding: 24px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .pricing-title {
+            font-size: 0.9rem;
+            color: #166534;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .pricing-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #14532d;
+            margin: 8px 0;
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: #15803d;
+            font-weight: 600;
+        }
+
+        /* Milestone Card */
+        .milestone-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .milestone-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .milestone-badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: var(--secondary);
+            font-weight: 800;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .milestone-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 4px 0 8px 0;
+        }
+
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-size: 0.88rem;
+            color: #92400e;
+            margin: 20px 0;
+        }
+
+        /* Signature Grid */
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .signature-col {
+            text-align: center;
+        }
+
+        .signature-space {
+            height: 90px;
+        }
+
+        .signature-name {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 0.95rem;
+            text-decoration: underline;
+        }
+
+        .signature-title {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* Print Mode */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm 12mm 12mm 12mm;
+            }
+            body {
+                background: #ffffff;
+                padding: 0;
+            }
+            .proposal-container {
+                box-shadow: none;
+                border: none;
+                max-width: 100%;
+            }
+            .top-action-bar {
+                display: none;
+            }
+            .proposal-header {
+                padding: 24px 28px;
+            }
+            .proposal-body {
+                padding: 24px 28px;
+            }
+            h2.section-heading {
+                margin-top: 24px;
+                margin-bottom: 14px;
+                page-break-after: avoid;
+            }
+            .screenshot-card {
+                page-break-inside: avoid;
+                margin: 10px 0;
+            }
+            .screenshot-card img {
+                max-height: 300px;
+                object-fit: contain;
+            }
+            .mobile-screenshots-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+                page-break-inside: avoid;
+                page-break-before: always;
+                margin: 12px 0;
+            }
+            .mobile-screenshots-grid .screenshot-card img {
+                max-height: 400px;
+                object-fit: contain;
+            }
+            table.spec-table {
+                page-break-inside: auto;
+                font-size: 0.82rem;
+            }
+            table.spec-table tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+            table.spec-table th, table.spec-table td {
+                padding: 7px 10px;
+            }
+            .pricing-box {
+                padding: 16px;
+                margin: 16px 0;
+                page-break-inside: avoid;
+            }
+            .pricing-amount {
+                font-size: 2rem;
+                margin: 4px 0;
+            }
+            .milestone-container {
+                page-break-inside: avoid;
+                margin: 14px 0;
+            }
+            .milestone-card {
+                padding: 14px;
+            }
+            .alert-box {
+                page-break-inside: avoid;
+                margin: 14px 0;
+                padding: 10px 14px;
+            }
+            .signature-grid {
+                page-break-inside: avoid;
+                margin-top: 24px;
+                padding-top: 16px;
+            }
+            .signature-space {
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .milestone-container, .signature-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .proposal-body, .proposal-header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="proposal-container">
+    <!-- Action Bar -->
+    <div class="top-action-bar">
+        <div style="font-size:0.85rem; font-weight:700; color:var(--primary);">
+            PROPOSAL PENAWARAN RESMI APLIKASI
+        </div>
+        <div style="display:flex; gap:10px;">
+            <button onclick="window.print()" class="btn-print">
+                🖨️ Cetak Proposal (PDF)
+            </button>
+            <a href="https://wa.me/6285318766057?text=Halo%20Pak%20Muhdir%20Abdillah,%20saya%20berminat%20dengan%20Proposal%20Penawaran%20Aplikasi%20AC%20SERVICE%20PRO%20seharga%20Rp%202.000.000." target="_blank" class="btn-wa">
+                💬 Hubungi Pengembang (WhatsApp)
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="proposal-header">
+        <div class="header-brand">
+            <div class="header-logo-badge">AC</div>
+            <div class="header-title">
+                <h1>AC SERVICE PRO v1.0</h1>
+                <p>Integrated Air Conditioning Service & Field Operations Management System</p>
+            </div>
+        </div>
+
+        <div class="meta-grid">
+            <div class="meta-item">
+                <small>Pengembang & Pemilik Solusi</small>
+                <strong>Muhdir Abdillah, A.Md., Kom.</strong>
+            </div>
+            <div class="meta-item">
+                <small>Kontak WhatsApp Resmi</small>
+                <strong>085318766057</strong>
+            </div>
+            <div class="meta-item">
+                <small>Nilai Penawaran Lisensi</small>
+                <strong style="color:var(--accent);">Rp 2.000.000,- (Nett)</strong>
+            </div>
+            <div class="meta-item">
+                <small>Status Kesiapan Sistem</small>
+                <strong style="color:#86efac;">100% Siap Operasional (Live)</strong>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Body -->
+    <main class="proposal-body">
+        <h2 class="section-heading">1. Latar Belakang & Gambaran Produk</h2>
+        <p>
+            Dalam industri jasa servis dan perawatan Air Conditioner (AC), kecepatan respon, akurasi penjadwalan teknisi lapangan, pengawasan penggunaan sparepart, dan ketepatan penagihan faktur adalah pilar utama kesuksesan bisnis. 
+        </p>
+        <p>
+            <strong>AC SERVICE PRO</strong> dibangun sebagai solusi teknologi menyeluruh (*end-to-end*) yang mengintegrasikan alur operasional: mulai dari pelanggan melakukan pemesanan, penjadwalan teknisi, check-in pengerjaan di lapangan via smartphone, pencatatan otomatis stok freon & material, tanda tangan digital pelanggan, penerbitan faktur tagihan, pencatatan kas harian, kontrak servis tahunan, hingga analitik laba rugi.
+        </p>
+
+        <h2 class="section-heading" style="page-break-before: always;">2. Screenshot Antarmuka Sistem Aktual (Live Application)</h2>
+        <p style="font-size:0.9rem; color:#475569; margin-bottom:14px;">
+            Berikut adalah tangkapan layar asli (authentic screenshot) yang diambil langsung dari database dan sistem operasional <strong>AC SERVICE PRO v1.0</strong> yang sedang berjalan:
+        </p>
+        
+        <div class="screenshot-card">
+            <img src="./screenshot_actual_dashboard.png" alt="Dashboard Utama Desktop AC Service Pro">
+            <div class="screenshot-caption">
+                <strong>Gambar 1 (Tampilan Desktop Laptop / PC):</strong> Dashboard Utama Eksekutif — Memantau statistik pekerjaan harian, status operasional antrean SPK secara real-time, tren pendapatan & pengeluaran 6 bulan, performa teknisi terbaik, dan peringatan dini stok sparepart minimum.
+            </div>
+        </div>
+
+        <div class="screenshot-card">
+            <img src="./screenshot_actual_work_orders.png" alt="Manajemen Work Order Servis AC Service Pro">
+            <div class="screenshot-caption">
+                <strong>Gambar 2 (Tampilan Desktop Laptop / PC):</strong> Manajemen Work Order (SPK) — Tabel terpadu riwayat pekerjaan servis, filter 9 tahapan alur status kerja, identifikasi detail unit AC & freon, keluhan pelanggan, dan alokasi teknisi lapangan.
+            </div>
+        </div>
+
+        <div class="mobile-screenshots-grid">
+            <div class="screenshot-card" style="margin: 0;">
+                <img src="./screenshot_actual_mobile_menu.png" alt="Menu Navigasi Mobile Smartphone AC Service Pro" style="max-height: 440px; object-fit: contain; background: #0f172a;">
+                <div class="screenshot-caption">
+                    <strong>Gambar 3 (Tampilan Smartphone):</strong> Navigasi PWA Handphone dengan tombol menu aktif yang menampilkan seluruh kategori menu operasional lengkap seperti pada laptop.
+                </div>
+            </div>
+            <div class="screenshot-card" style="margin: 0;">
+                <img src="./screenshot_actual_mobile_technician.png" alt="Operasional Teknisi Lapangan Smartphone" style="max-height: 440px; object-fit: contain; background: #0f172a;">
+                <div class="screenshot-caption">
+                    <strong>Gambar 4 (Tampilan Smartphone):</strong> Modul Lapangan Teknisi — Antrean tugas servis teknisi aktif, tombol direct navigasi Peta GPS & WhatsApp klien, dan checklist pengerjaan unit AC.
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-heading">3. Daftar 13 Modul Unggulan</h2>
+        <table class="spec-table">
+            <thead>
+                <tr>
+                    <th style="width:50px;">No</th>
+                    <th style="width:220px;">Modul Sistem</th>
+                    <th>Kemampuan & Nilai Manfaat Bisnis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><strong>Dashboard Eksekutif</strong></td>
+                    <td>Monitoring performa usaha harian/bulanan, total WO aktif, grafik pendapatan, notifikasi stok minimum, dan pengingat servis rutin pelanggan.</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><strong>Manajemen Pelanggan</strong></td>
+                    <td>Data pelanggan terintegrasi (Rumah Tangga, Toko, Kantor, Hotel, Industri), histori unit AC, riwayat perbaikan, dan ekspor/impor data.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><strong>Manajemen Unit AC</strong></td>
+                    <td>Pencatatan multi-unit per pelanggan, kapasitas PK (1/2 PK s.d. 5 PK), jenis freon (R22/R32/R410A), tanggal pasang, dan garansi.</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><strong>Work Order & Penjadwalan</strong></td>
+                    <td>Penomoran SPK otomatis, alur 9 tahapan status kerja, penugasan banyak teknisi per order, tarif estimasi, dan cetak SPK fisik.</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><strong>Manajemen Teknisi</strong></td>
+                    <td>Profil teknisi, jadwal kerja, area kerja, absensi check-in/out berbasis lokasi, dan perhitungan komisi servis otomatis.</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><strong>Aplikasi Mobile Teknisi (PWA)</strong></td>
+                    <td>Tampilan smartphone: navigasi Google Maps, tombol direct WhatsApp ke klien, diagnosis servis, pemakaian material, dan tanda tangan digital.</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><strong>Katalog Layanan & Harga</strong></td>
+                    <td>Tarif dinamis berdasarkan PK & jenis freon (Cuci AC, Isi Freon, Pasang Baru, Bongkar) tanpa perlu modifikasi kode program.</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><strong>Inventori & Sparepart</strong></td>
+                    <td>Manajemen SKU sparepart, kartu stok masuk/keluar, otomatis memotong stok saat teknisi melakukan servis, PO ke supplier.</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><strong>Faktur & Kasir (Billing)</strong></td>
+                    <td>Terbit faktur otomatis, pembayaran tunai/transfer/QRIS, cetak nota digital, pelacakan piutang, dan pencatatan uang muka (DP).</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><strong>Buku Kas & Pengeluaran</strong></td>
+                    <td>Pencatatan pengeluaran operasional harian toko, mutasi saldo kas/bank BCA/Mandiri, dan rekap keuangan aktual.</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><strong>Kontrak Servis Berkala</strong></td>
+                    <td>Pengelolaan kontrak tahunan kantor/instansi dengan jadwal kunjungan otomatis dan auto-terbit Work Order berkala.</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td><strong>Portal Mandiri Pelanggan</strong></td>
+                    <td>Pelanggan dapat login mandiri untuk memesan servis, mengecek status pesanan, melihat riwayat faktur, dan mengajukan tiket komplain.</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td><strong>Laporan Usaha & Analitik</strong></td>
+                    <td>Laporan laba rugi usaha, evaluasi produktivitas teknisi, valuasi nilai persediaan barang gudang, dan export data CSV.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="section-heading">4. Nilai Penawaran & Skema Pembayaran</h2>
+        
+        <div class="pricing-box">
+            <div class="pricing-title">Total Biaya Lisensi & Implementasi Software</div>
+            <div class="pricing-amount">Rp 2.000.000,-</div>
+            <div class="pricing-note">(Dua Juta Rupiah — Sekali Bayar, Tanpa Biaya Berlangganan Bulanan)</div>
+        </div>
+
+        <p>
+            Pembayaran dilakukan secara aman dan transparan dalam <strong>2 (dua) Termin</strong>:
+        </p>
+
+        <div class="milestone-container">
+            <div class="milestone-card">
+                <span class="milestone-badge">TERMIN 1 (50%)</span>
+                <div class="milestone-price">Rp 1.000.000,-</div>
+                <p style="font-size:0.85rem; margin-bottom:0;">
+                    Dibayarkan setelah <strong>persetujuan / kesepakatan proposal</strong>. Digunakan sebagai komitmen awal dan penyiapan berkas deployment.
+                </p>
+            </div>
+            <div class="milestone-card" style="border-left-color: var(--success);">
+                <span class="milestone-badge" style="background:#f0fdf4; color:#16a34a;">TERMIN 2 (50%)</span>
+                <div class="milestone-price">Rp 1.000.000,-</div>
+                <p style="font-size:0.85rem; margin-bottom:0;">
+                    Dibayarkan setelah aplikasi <strong>berhasil terpasang dan beroperasi secara LIVE PUBLIK</strong> di hosting milik klien.
+                </p>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            <strong>⚠️ Ketentuan Domain & Hosting:</strong><br>
+            Harga penawaran Rp 2.000.000,- di atas <strong>TIDAK TERMASUK</strong> biaya pendaftaran nama domain dan sewa paket hosting/cPanel. Pembelian domain dan hosting disediakan atau dibeli langsung oleh pihak Pembeli. Pihak pengembang akan memandu spesifikasi hosting yang paling efisien dan membantu proses setup hingga live.
+        </div>
+
+        <h2 class="section-heading">5. Yang Diterima oleh Pembeli (Deliverables)</h2>
+        <ul style="margin-left: 20px; font-size: 0.95rem; color: #334155; line-height: 1.8;">
+            <li>Full Source Code Aplikasi AC SERVICE PRO v1.0 (PHP Native 8.2+, PWA, Offline Service Worker).</li>
+            <li>Master Database SQLite 3 (Lengkap dengan tabel, indeks, WAL mode, dan data master bawaan).</li>
+            <li>Bantuan teknis instalasi dan konfigurasi di cPanel hosting klien sampai siap digunakan.</li>
+            <li>Panduan Penggunaan Operasional Aplikasi (User Guide).</li>
+            <li>Garansi perbaikan bug / kendala teknis minor selama 30 hari kalender setelah status live.</li>
+        </ul>
+
+        <div class="signature-grid">
+            <div class="signature-col">
+                <p>Diajukan oleh,<br><strong>PENGEMBANG / PENJUAL</strong></p>
+                <div class="signature-space"></div>
+                <div class="signature-name">MUHDIR ABDILLAH, A.Md., Kom.</div>
+                <div class="signature-title">Software Engineer & Pengembang AC Service Pro<br>WhatsApp: 085318766057</div>
+            </div>
+            <div class="signature-col">
+                <p>Disetujui oleh,<br><strong>PEMBELI / PIMPINAN USAHA</strong></p>
+                <div class="signature-space"></div>
+                <div class="signature-name">..................................................................</div>
+                <div class="signature-title">Tanda Tangan & Cap Usaha<br>Tanggal: ....................................................</div>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>

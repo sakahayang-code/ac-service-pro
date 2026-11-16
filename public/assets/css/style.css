@@ -498,6 +498,415 @@ a:hover {
   }
 }
 
+/* ========================================================
+   MODERN UI COMPONENTS (CoolService & AC Pro Hybrid)
+======================================================== */
+
+/* --- 1. MODERN HERO BANNER --- */
+.hero-banner-modern {
+  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 50%, #bfdbfe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: 20px;
+  padding: 26px 30px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.12);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-banner-left {
+  flex: 1 1 360px;
+  min-width: 0;
+  z-index: 2;
+}
+
+.hero-brand-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+}
+
+.hero-banner-title {
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem);
+  font-weight: 900;
+  color: #0b2545;
+  line-height: 1.22;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.hero-banner-title span {
+  color: #1d4ed8;
+}
+
+.hero-banner-subtitle {
+  font-size: 0.95rem;
+  color: #334155;
+  margin-bottom: 20px;
+  line-height: 1.45;
+  max-width: 540px;
+}
+
+.hero-btn-order {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2563eb;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 11px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hero-btn-order:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45);
+}
+
+.hero-btn-order svg {
+  width: 17px !important;
+  height: 17px !important;
+  stroke-width: 2.5;
+}
+
+.hero-banner-right {
+  flex: 0 0 300px;
+  max-width: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.hero-ac-img {
+  width: 100%;
+  max-height: 190px;
+  object-fit: contain;
+  border-radius: 14px;
+  filter: drop-shadow(0 14px 24px rgba(15, 42, 74, 0.22));
+  transition: transform 0.3s ease;
+}
+
+.hero-ac-img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .hero-banner-modern {
+    flex-direction: column;
+    padding: 18px 16px;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .hero-banner-right {
+    flex: 1 1 auto;
+    max-width: 100%;
+    width: 100%;
+  }
+  .hero-ac-img {
+    max-height: 130px;
+    margin: 0 auto;
+  }
+}
+
+/* --- 2. MODERN 4 KPI STAT CARDS --- */
+.stat-card-modern {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.stat-card-modern:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.1);
+}
+
+.stat-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-icon-box.blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+.stat-icon-box.green {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+.stat-icon-box.yellow {
+  background: #fffbeb;
+  color: #d97706;
+}
+.stat-icon-box.red {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.stat-icon-box svg {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+.stat-info-modern {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.stat-val-modern {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.stat-lbl-modern {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.stat-trend.up {
+  color: #16a34a;
+}
+.stat-trend.down {
+  color: #dc2626;
+}
+.stat-trend.neutral {
+  color: #64748b;
+}
+
+@media (max-width: 640px) {
+  .stat-card-modern {
+    padding: 12px 14px;
+    gap: 10px;
+    border-radius: 12px;
+  }
+  .stat-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
+  .stat-icon-box svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .stat-val-modern {
+    font-size: 1.25rem;
+  }
+  .stat-lbl-modern {
+    font-size: 0.72rem;
+  }
+}
+
+/* --- 3. MODERN CHART & DONUT STYLES --- */
+.chart-card-modern {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.donut-wrapper-modern {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 240px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.donut-center-badge {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.donut-center-badge strong {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1;
+}
+
+.donut-center-badge span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* --- 4. INFO CEPAT & HOTLINE --- */
+.info-cepat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.info-cepat-item svg {
+  color: #16a34a !important;
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0;
+  stroke-width: 2.5;
+}
+
+.hotline-btn-modern {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #09264c 0%, #173b6c 100%);
+  color: #ffffff !important;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(9, 38, 76, 0.3);
+  transition: all 0.2s ease;
+  margin-top: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hotline-btn-modern:hover {
+  background: linear-gradient(135deg, #10376d 0%, #1e4a86 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(9, 38, 76, 0.4);
+}
+
+.hotline-btn-modern svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.btn-lihat-semua {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #2563eb;
+  color: #ffffff !important;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.btn-lihat-semua:hover {
+  background: #1d4ed8;
+}
+
+/* --- 5. SIDEBAR PROMO CARD --- */
+.sidebar-promo-card {
+  margin: 14px 12px 10px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+}
+
+.sidebar-promo-card img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  display: block;
+}
+
+.sidebar-promo-content {
+  padding: 8px 10px;
+  background: linear-gradient(180deg, rgba(15, 42, 74, 0.7) 0%, rgba(9, 26, 48, 0.98) 100%);
+  text-align: center;
+}
+
+.sidebar-promo-title {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.sidebar-promo-sub {
+  font-size: 0.68rem;
+  color: var(--accent);
+  margin-top: 2px;
+  font-weight: 600;
+}
+
 /* --- 6. BUTTONS --- */
 .btn {
   display: inline-flex;

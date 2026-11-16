@@ -14,10 +14,12 @@ if (!function_exists('is_active_route')) {
 <aside class="desktop-sidebar">
     <div class="sidebar-brand">
         <div style="display:flex; align-items:center; gap:10px; min-width:0; flex:1;">
-            <div class="sidebar-brand-logo">AC</div>
+            <div class="sidebar-brand-logo">
+                <i data-lucide="snowflake" style="width:22px; height:22px; stroke-width:2.5;"></i>
+            </div>
             <div class="sidebar-brand-text">
                 <h2>AC SERVICE PRO</h2>
-                <span>Management System</span>
+                <span>Service AC Profesional</span>
             </div>
         </div>
         <button type="button" class="mobile-sidebar-close-btn" onclick="toggleMobileMenuDrawer(false)" aria-label="Tutup Menu" title="Tutup Menu">
@@ -159,6 +161,15 @@ if (!function_exists('is_active_route')) {
             <?php endif; ?>
         <?php endif; ?>
     </nav>
+
+    <!-- Sidebar Bottom Promo Card -->
+    <div class="sidebar-promo-card">
+        <img src="<?= asset('images/technician_card.jpg') ?>" alt="Teknisi Servis AC">
+        <div class="sidebar-promo-content">
+            <div class="sidebar-promo-title">AC Sejuk, Hidup Nyaman</div>
+            <div class="sidebar-promo-sub">Garansi Servis 30 Hari</div>
+        </div>
+    </div>
 
     <div class="sidebar-user">
         <div class="user-avatar"><?= strtoupper(substr($user['name'] ?? 'U', 0, 1)) ?></div>

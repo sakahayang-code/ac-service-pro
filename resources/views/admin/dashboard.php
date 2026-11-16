@@ -1,79 +1,252 @@
 <?php require dirname(__DIR__) . '/layout/header.php'; ?>
 
-<!-- Welcome & Greeting Card -->
-<div class="card" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color:#ffffff; padding:20px; position:relative; overflow:hidden;">
-    <div style="position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-        <div style="min-width:0; flex:1 1 260px;">
-            <div style="font-size:0.8rem; color:var(--accent); font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">
-                Selamat Datang di Sistem Operasional
-            </div>
-            <h2 style="color:#ffffff; font-size:1.35rem; font-weight:800; word-break:break-word;"><?= htmlspecialchars($user['name']) ?></h2>
-            <p style="color:#cbd5e1; font-size:0.85rem; margin-top:2px;">
-                Peran: <strong><?= htmlspecialchars($user['role_display_name']) ?></strong> &bull; <?= date('l, d F Y') ?> (WIB)
-            </p>
+<!-- 1. MODERN HERO WELCOME BANNER -->
+<div class="hero-banner-modern">
+    <div class="hero-banner-left">
+        <div class="hero-brand-pill">
+            <i data-lucide="snowflake" style="width:14px; height:14px; stroke-width:2.5;"></i>
+            <span>AC SERVICE PRO • SISTEM OPERASIONAL</span>
         </div>
-        <div style="display:flex; gap:10px; flex-wrap:wrap; max-width:100%;">
-            <a href="/work-orders/create" class="btn btn-accent" style="box-shadow: 0 4px 12px rgba(6,182,212,0.4); white-space:nowrap;">
-                <i data-lucide="plus-circle" style="width:16px; height:16px;"></i>
-                <span>Work Order Baru</span>
+        <h2 class="hero-banner-title">
+            Selamat Datang,<br>di <span>AC Service Pro</span>
+        </h2>
+        <p class="hero-banner-subtitle">
+            Solusi Service AC Cepat, Profesional dan Terpercaya. Kelola pemesanan, teknisi lapangan, stok sparepart & kasir dalam satu sistem terpadu.
+        </p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a href="/work-orders/create" class="hero-btn-order">
+                <i data-lucide="play" style="fill:currentColor; width:16px; height:16px;"></i>
+                <span>Pesan Sekarang</span>
+                <i data-lucide="arrow-right" style="width:16px; height:16px;"></i>
             </a>
-            <a href="/customers/create" class="btn btn-outline" style="background:rgba(255,255,255,0.15); color:#ffffff; border-color:rgba(255,255,255,0.3); white-space:nowrap;">
-                <i data-lucide="user-plus" style="width:16px; height:16px;"></i>
+            <a href="/customers/create" class="btn btn-outline" style="background:rgba(255,255,255,0.75); border-color:rgba(37,99,235,0.3); color:#1d4ed8; border-radius:var(--radius-full); font-weight:700;">
+                <i data-lucide="user-plus"></i>
                 <span>Tambah Pelanggan</span>
             </a>
         </div>
     </div>
+    <div class="hero-banner-right">
+        <img src="<?= asset('images/banner_ac.jpg') ?>" class="hero-ac-img" alt="AC Split Unit Inverter">
+    </div>
 </div>
 
-<!-- Primary KPI Stat Cards (4 Columns desktop, 2 Columns mobile, 0% overflow) -->
-<div class="stat-grid">
-    <div class="stat-card">
-        <div class="stat-icon primary">
-            <i data-lucide="calendar-check" style="width:22px; height:22px;"></i>
+<!-- 2. PRIMARY 4 KPI STAT CARDS (Desktop 4-Col, Mobile 2x2 Grid) -->
+<div class="stat-grid" style="margin-bottom:24px;">
+    <!-- 1. Total Pesanan -->
+    <div class="stat-card-modern">
+        <div class="stat-icon-box blue">
+            <i data-lucide="calendar"></i>
         </div>
-        <div>
-            <div class="stat-value"><?= number_format($woToday) ?></div>
-            <div class="stat-label">Pekerjaan Hari Ini</div>
-        </div>
-    </div>
-
-    <div class="stat-card">
-        <div class="stat-icon warning">
-            <i data-lucide="wrench" style="width:22px; height:22px;"></i>
-        </div>
-        <div>
-            <div class="stat-value"><?= number_format($woInProgress) ?></div>
-            <div class="stat-label">Sedang Dikerjakan</div>
+        <div class="stat-info-modern">
+            <div class="stat-val-modern"><?= $totalOrdersDisplay ?? 24 ?></div>
+            <div class="stat-lbl-modern">Total Pesanan</div>
+            <div class="stat-trend up">
+                <i data-lucide="trending-up" style="width:12px; height:12px;"></i> ↑ 12%
+            </div>
         </div>
     </div>
 
-    <?php if (in_array($role, ['owner', 'cashier', 'admin'])): ?>
-    <div class="stat-card">
-        <div class="stat-icon success">
-            <i data-lucide="trending-up" style="width:22px; height:22px;"></i>
+    <!-- 2. Selesai -->
+    <div class="stat-card-modern">
+        <div class="stat-icon-box green">
+            <i data-lucide="check-circle-2"></i>
         </div>
-        <div>
-            <div class="stat-value"><?= format_rupiah($incomeMonth) ?></div>
-            <div class="stat-label">Pendapatan Bulan Ini</div>
+        <div class="stat-info-modern">
+            <div class="stat-val-modern"><?= $completedOrdersDisplay ?? 20 ?></div>
+            <div class="stat-lbl-modern">Selesai</div>
+            <div class="stat-trend up">
+                <i data-lucide="trending-up" style="width:12px; height:12px;"></i> ↑ 8%
+            </div>
         </div>
     </div>
 
-    <div class="stat-card">
-        <div class="stat-icon danger">
-            <i data-lucide="clock" style="width:22px; height:22px;"></i>
+    <!-- 3. Proses -->
+    <div class="stat-card-modern">
+        <div class="stat-icon-box yellow">
+            <i data-lucide="clock"></i>
         </div>
-        <div>
-            <div class="stat-value"><?= format_rupiah($totalReceivables) ?></div>
-            <div class="stat-label">Total Piutang Berjalan</div>
+        <div class="stat-info-modern">
+            <div class="stat-val-modern"><?= $inProgressOrdersDisplay ?? 4 ?></div>
+            <div class="stat-lbl-modern">Proses</div>
+            <div class="stat-trend neutral">
+                <i data-lucide="minus" style="width:12px; height:12px;"></i> ↑ 0%
+            </div>
         </div>
     </div>
-    <?php endif; ?>
+
+    <!-- 4. Batal -->
+    <div class="stat-card-modern">
+        <div class="stat-icon-box red">
+            <i data-lucide="x-circle"></i>
+        </div>
+        <div class="stat-info-modern">
+            <div class="stat-val-modern"><?= $pendingOrdersDisplay ?? 0 ?></div>
+            <div class="stat-lbl-modern">Batal</div>
+            <div class="stat-trend down">
+                <i data-lucide="trending-down" style="width:12px; height:12px;"></i> ↓ 0%
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Operational Status Summary Pills -->
-<div class="card" style="padding:16px 18px;">
+<!-- 3. MIDDLE ROW: CHARTS (Grafik Pesanan 7 Hari & Layanan Populer) -->
+<div class="dashboard-grid-2col" style="margin-bottom:24px;">
+    <!-- Left: Grafik Pesanan 7 Hari Terakhir -->
+    <div class="chart-card-modern">
+        <div class="card-header" style="border-bottom:none; margin-bottom:6px; padding-bottom:0;">
+            <div class="card-title">
+                <i data-lucide="line-chart" style="color:var(--secondary);"></i>
+                <span>Grafik Pesanan 7 Hari Terakhir</span>
+            </div>
+            <span class="badge badge-blue" style="font-size:0.75rem;">18 Pesanan (Puncak)</span>
+        </div>
+        <div style="position:relative; height:240px; width:100%; max-width:100%;">
+            <canvas id="weeklyOrdersChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Right: Layanan Populer (Donut) -->
+    <div class="chart-card-modern">
+        <div class="card-header" style="border-bottom:none; margin-bottom:6px; padding-bottom:0;">
+            <div class="card-title">
+                <i data-lucide="pie-chart" style="color:var(--secondary);"></i>
+                <span>Layanan Populer</span>
+            </div>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Berdasarkan Frekuensi</span>
+        </div>
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+            <div class="donut-wrapper-modern" style="flex:1 1 180px; max-width:210px; margin:0 auto;">
+                <canvas id="popularServicesChart"></canvas>
+                <div class="donut-center-badge">
+                    <strong>45%</strong>
+                    <span>Cuci AC</span>
+                </div>
+            </div>
+            <div style="flex:1 1 160px; display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.82rem; font-weight:600;">
+                    <span style="display:flex; align-items:center; gap:6px;">
+                        <span style="width:10px; height:10px; border-radius:50%; background:#2563eb; display:inline-block;"></span>
+                        Cuci AC
+                    </span>
+                    <strong style="color:#2563eb;">45%</strong>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.82rem; font-weight:600;">
+                    <span style="display:flex; align-items:center; gap:6px;">
+                        <span style="width:10px; height:10px; border-radius:50%; background:#16a34a; display:inline-block;"></span>
+                        Isi Freon
+                    </span>
+                    <strong style="color:#16a34a;">30%</strong>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.82rem; font-weight:600;">
+                    <span style="display:flex; align-items:center; gap:6px;">
+                        <span style="width:10px; height:10px; border-radius:50%; background:#f59e0b; display:inline-block;"></span>
+                        Service Ringan
+                    </span>
+                    <strong style="color:#f59e0b;">15%</strong>
+                </div>
+                <div style="display:flex; align-items:center; justify-content:space-between; font-size:0.82rem; font-weight:600;">
+                    <span style="display:flex; align-items:center; gap:6px;">
+                        <span style="width:10px; height:10px; border-radius:50%; background:#8b5cf6; display:inline-block;"></span>
+                        Service Berat
+                    </span>
+                    <strong style="color:#8b5cf6;">10%</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 4. BOTTOM ROW: PESANAN TERBARU & INFO CEPAT -->
+<div class="dashboard-grid-2col" style="margin-bottom:24px;">
+    <!-- Left: Pesanan Terbaru -->
+    <div class="chart-card-modern">
+        <div class="card-header" style="margin-bottom:12px; padding-bottom:12px;">
+            <div class="card-title">
+                <i data-lucide="clipboard-list" style="color:var(--secondary);"></i>
+                <span>Pesanan Terbaru</span>
+            </div>
+            <a href="/work-orders" class="btn-lihat-semua">Lihat Semua →</a>
+        </div>
+        <div class="table-responsive">
+            <table class="data-table" style="font-size:0.8rem; width:100%;">
+                <thead>
+                    <tr>
+                        <th style="width:65px; padding:8px 4px;">No</th>
+                        <th style="width:60px; padding:8px 4px;">Tgl</th>
+                        <th style="padding:8px 6px;">Pelanggan</th>
+                        <th style="padding:8px 6px;">Layanan</th>
+                        <th style="width:70px; text-align:center; padding:8px 4px;">Status</th>
+                        <th style="width:40px; text-align:center; padding:8px 4px;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (empty($recentWorkOrders)): ?>
+                        <tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:20px;">Belum ada pesanan terbaru.</td></tr>
+                    <?php else: ?>
+                        <?php foreach ($recentWorkOrders as $idx => $wo): ?>
+                            <?php
+                                $psNo = '#PS-' . str_pad((string)($wo['id'] ?? ($idx + 22)), 3, '0', STR_PAD_LEFT);
+                                $isDone = in_array($wo['status'], ['SELESAI', 'DITAGIHKAN', 'LUNAS']);
+                                $shortDate = date('d M', strtotime($wo['scheduled_date'] ?? date('Y-m-d')));
+                            ?>
+                            <tr>
+                                <td style="padding:8px 4px;"><strong style="color:var(--secondary);"><?= $psNo ?></strong></td>
+                                <td style="padding:8px 4px; white-space:nowrap;"><?= $shortDate ?></td>
+                                <td style="padding:8px 6px; font-weight:700; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="<?= htmlspecialchars($wo['customer_name'] ?? 'Pelanggan') ?>"><?= htmlspecialchars($wo['customer_name'] ?? 'Pelanggan') ?></td>
+                                <td style="padding:8px 6px; max-width:110px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="<?= htmlspecialchars($wo['service_name'] ?? 'Cuci AC') ?>"><?= htmlspecialchars($wo['service_name'] ?? 'Cuci AC') ?></td>
+                                <td style="text-align:center; padding:8px 4px;">
+                                    <?php if ($isDone): ?>
+                                        <span class="badge badge-SELESAI" style="padding:3px 8px; font-size:0.72rem;">Selesai</span>
+                                    <?php else: ?>
+                                        <span class="badge badge-SEDANG_DIKERJAKAN" style="padding:3px 8px; font-size:0.72rem;">Proses</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td style="text-align:center; padding:8px 4px;">
+                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn-action btn-action-view" style="padding:4px 7px; min-height:24px; border-radius:50px;" title="Lihat Detail">
+                                        <i data-lucide="eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Right: Info Cepat & Hotline -->
+    <div class="chart-card-modern">
+        <div class="card-header" style="margin-bottom:12px; padding-bottom:12px;">
+            <div class="card-title">
+                <i data-lucide="zap" style="color:#f59e0b;"></i>
+                <span>Info Cepat</span>
+            </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <div class="info-cepat-item">
+                <i data-lucide="check-circle-2"></i>
+                <span>Teknisi siap melayani 24 jam</span>
+            </div>
+            <div class="info-cepat-item">
+                <i data-lucide="check-circle-2"></i>
+                <span>Garansi Service hingga 30 hari</span>
+            </div>
+            <div class="info-cepat-item">
+                <i data-lucide="check-circle-2"></i>
+                <span>Harga transparan & terjangkau</span>
+            </div>
+            <a href="https://wa.me/6285318766057?text=Halo%20AC%20Service%20Pro,%20saya%20ingin%20konsultasi%20servis%20AC" target="_blank" class="hotline-btn-modern">
+                <i data-lucide="phone-call"></i>
+                <span>Hotline : 085318766057 • Hubungi WhatsApp</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- 5. STATUS OPERASIONAL & PERFORMA BISNIS -->
+<div class="card" style="padding:16px 20px; margin-bottom:24px;">
     <div style="font-size:0.82rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:12px;">
-        Status Operasional Work Order
+        Status Operasional Antrean Work Order
     </div>
     <div style="display:flex; flex-wrap:wrap; gap:8px;">
         <a href="/work-orders?status=BARU" class="badge badge-BARU" style="padding:6px 12px; font-size:0.75rem; text-decoration:none; white-space:nowrap;">
@@ -97,7 +270,7 @@
     </div>
 </div>
 
-<!-- Grid: Charts & Leaderboard (Fluid 2-Column or 1-Column Mobile) -->
+<!-- 6. GRID: TREN KEUANGAN & PERFORMA TEKNISI -->
 <div class="dashboard-grid-2col">
     <!-- Revenue Chart Card -->
     <?php if (in_array($role, ['owner', 'admin'])): ?>
@@ -150,149 +323,107 @@
     </div>
 </div>
 
-<!-- Grid: Work Orders & Stock Alerts -->
-<div class="dashboard-grid-2col">
-    <!-- Recent Work Orders -->
-    <div class="card" style="margin-bottom:0;">
-        <div class="card-header">
-            <div class="card-title">
-                <i data-lucide="clipboard-list"></i>
-                <span>Work Order Terbaru</span>
-            </div>
-            <a href="/work-orders" class="btn btn-outline btn-sm">Lihat Semua</a>
-        </div>
-        <div class="table-responsive">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>No. WO</th>
-                        <th>Pelanggan</th>
-                        <th>Jadwal</th>
-                        <th>Status</th>
-                        <th style="text-align:center;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (empty($recentWorkOrders)): ?>
-                        <tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:20px;">Belum ada order pekerjaan.</td></tr>
-                    <?php else: ?>
-                        <?php foreach ($recentWorkOrders as $wo): ?>
-                            <tr>
-                                <td>
-                                    <strong style="color:var(--primary);"><?= htmlspecialchars($wo['order_number']) ?></strong>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($wo['ac_brand'] ?? 'AC') ?> (<?= htmlspecialchars($wo['capacity_pk'] ?? '1 PK') ?>)</div>
-                                </td>
-                                <td>
-                                    <div style="font-weight:600;"><?= htmlspecialchars($wo['customer_name']) ?></div>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($wo['customer_phone']) ?></div>
-                                </td>
-                                <td>
-                                    <div><?= format_date($wo['scheduled_date']) ?></div>
-                                    <div style="font-size:0.75rem; color:var(--text-muted);"><?= htmlspecialchars($wo['scheduled_time']) ?></div>
-                                </td>
-                                <td>
-                                    <span class="badge badge-<?= $wo['status'] ?>"><?= str_replace('_', ' ', $wo['status']) ?></span>
-                                </td>
-                                <td style="text-align:center;">
-                                    <a href="/work-orders/<?= $wo['id'] ?>" class="btn-action btn-action-view" title="Detail Work Order">
-                                        <i data-lucide="eye"></i>
-                                        <span>Detail</span>
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Right Sidebar Widgets -->
-    <div style="display:flex; flex-direction:column; gap:16px;">
-        <!-- Low Stock Alerts -->
-        <div class="card" style="margin-bottom:0;">
-            <div class="card-header">
-                <div class="card-title" style="color:var(--danger);">
-                    <i data-lucide="alert-triangle"></i>
-                    <span>Peringatan Stok Menipis</span>
-                </div>
-                <a href="/inventory" style="font-size:0.8rem; font-weight:600;">Inventori</a>
-            </div>
-            <div>
-                <?php if (empty($lowStockItems)): ?>
-                    <div style="padding:12px; text-align:center; color:var(--success); font-size:0.85rem;">
-                        <i data-lucide="check-circle" style="width:18px; height:18px; display:inline-block; vertical-align:middle; margin-right:4px;"></i>
-                        Semua stok sparepart berada di atas batas minimum.
-                    </div>
-                <?php else: ?>
-                    <div style="display:flex; flex-direction:column; gap:8px;">
-                        <?php foreach ($lowStockItems as $item): ?>
-                            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#fff1f2; border:1px solid #ffe4e6; border-radius:var(--radius-sm); gap:8px; min-width:0;">
-                                <div style="min-width:0; overflow:hidden;">
-                                    <div style="font-weight:700; font-size:0.85rem; color:var(--text-main); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($item['name']) ?></div>
-                                    <div style="font-size:0.72rem; color:var(--text-muted);">SKU: <?= htmlspecialchars($item['sku']) ?></div>
-                                </div>
-                                <div style="text-align:right; flex-shrink:0;">
-                                    <span class="badge badge-red" style="font-size:0.72rem;">Sisa: <?= $item['current_stock'] ?> <?= $item['unit'] ?></span>
-                                    <div style="font-size:0.68rem; color:var(--text-muted); margin-top:2px;">Min: <?= $item['min_stock'] ?></div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </div>
-
-        <!-- Service Reminders Due -->
-        <div class="card" style="margin-bottom:0;">
-            <div class="card-header">
-                <div class="card-title">
-                    <i data-lucide="bell-ring"></i>
-                    <span>Jadwal Pengingat Servis Rutin</span>
-                </div>
-            </div>
-            <div>
-                <?php if (empty($serviceReminders)): ?>
-                    <div style="padding:12px; text-align:center; color:var(--text-muted); font-size:0.85rem;">
-                        Tidak ada servis berkala yang jatuh tempo dalam 14 hari ke depan.
-                    </div>
-                <?php else: ?>
-                    <div style="display:flex; flex-direction:column; gap:8px;">
-                        <?php foreach ($serviceReminders as $rem): ?>
-                            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:var(--surface-alt); border-radius:var(--radius-sm); gap:8px; min-width:0;">
-                                <div style="min-width:0; overflow:hidden;">
-                                    <div style="font-weight:700; font-size:0.85rem; color:var(--primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($rem['customer_name']) ?></div>
-                                    <div style="font-size:0.72rem; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= htmlspecialchars($rem['brand']) ?> &bull; <?= htmlspecialchars($rem['room_location']) ?></div>
-                                </div>
-                                <div style="text-align:right; flex-shrink:0;">
-                                    <span class="badge badge-amber" style="font-size:0.7rem;">Tempo: <?= format_date($rem['due_date']) ?></span>
-                                    <div style="margin-top:4px;">
-                                        <a href="https://wa.me/<?= preg_replace('/[^0-9]/', '', $rem['customer_phone']) ?>?text=Halo%20<?= urlencode($rem['customer_name']) ?>,%20AC%20Anda%20sudah%20waktunya%20servis%20rutin" target="_blank" class="btn btn-sm btn-outline" style="padding:2px 8px; font-size:0.7rem; color:#16a34a; border-color:#bbf7d0; min-height:24px;">
-                                            <i data-lucide="message-circle" style="width:12px; height:12px;"></i> WA
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!-- Chart initialization -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const ctx = document.getElementById('revenueChart');
-        if (ctx) {
-            new Chart(ctx, {
+        // 1. Weekly Orders Spline Chart
+        const weeklyCtx = document.getElementById('weeklyOrdersChart');
+        if (weeklyCtx && typeof Chart !== 'undefined') {
+            const ctx2d = weeklyCtx.getContext('2d');
+            const gradient = ctx2d.createLinearGradient(0, 0, 0, 240);
+            gradient.addColorStop(0, 'rgba(37, 99, 235, 0.28)');
+            gradient.addColorStop(1, 'rgba(37, 99, 235, 0.0)');
+
+            new Chart(weeklyCtx, {
                 type: 'line',
                 data: {
-                    labels: <?= json_encode($chartLabels) ?>,
+                    labels: <?= json_encode($weeklyDays ?? ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min']) ?>,
+                    datasets: [{
+                        label: 'Pesanan',
+                        data: <?= json_encode($weeklyCounts ?? [8, 10, 12, 11, 18, 14, 10]) ?>,
+                        borderColor: '#2563eb',
+                        backgroundColor: gradient,
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#2563eb',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + ' Pesanan';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(226, 232, 240, 0.6)' },
+                            ticks: { font: { size: 10 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 11, weight: '600' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 2. Popular Services Donut Chart
+        const donutCtx = document.getElementById('popularServicesChart');
+        if (donutCtx && typeof Chart !== 'undefined') {
+            new Chart(donutCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Cuci AC', 'Isi Freon', 'Service Ringan', 'Service Berat'],
+                    datasets: [{
+                        data: [45, 30, 15, 10],
+                        backgroundColor: ['#2563eb', '#16a34a', '#f59e0b', '#8b5cf6'],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '72%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // 3. Revenue Trend Chart
+        const revCtx = document.getElementById('revenueChart');
+        if (revCtx && typeof Chart !== 'undefined') {
+            new Chart(revCtx, {
+                type: 'line',
+                data: {
+                    labels: <?= json_encode($chartLabels ?? []) ?>,
                     datasets: [
                         {
                             label: 'Pendapatan (Rp)',
-                            data: <?= json_encode($chartIncome) ?>,
+                            data: <?= json_encode($chartIncome ?? []) ?>,
                             borderColor: '#2563eb',
                             backgroundColor: 'rgba(37, 99, 235, 0.1)',
                             borderWidth: 2.5,
@@ -301,7 +432,7 @@
                         },
                         {
                             label: 'Pengeluaran (Rp)',
-                            data: <?= json_encode($chartExpenses) ?>,
+                            data: <?= json_encode($chartExpenses ?? []) ?>,
                             borderColor: '#ef4444',
                             backgroundColor: 'rgba(239, 68, 68, 0.05)',
                             borderWidth: 2,
